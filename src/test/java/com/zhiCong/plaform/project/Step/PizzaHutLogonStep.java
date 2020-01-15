@@ -18,21 +18,21 @@ public class PizzaHutLogonStep {
         pizzaHutLogonFlow = new PizzaHutLogonFlow();
     }
 
-    @Given("^the user on the login screen$")
+    @Given("^the user on the Login screen$")
     public void onLoginScreen(){
 
-        System.out.println("the user go to login screen");
+        System.out.println("the user go to Login screen");
         pizzaHutLogonFlow.onLoginScreen();
     }
 
-    @When("^the user input logon information on the logon screen$")
+    @When("^the user input logon information on the Logon screen$")
     public void inputLogonInformation(Map<String,String> logonInformation) {
 
-        System.out.println("the user input logon information");
+        System.out.println("the user input logon information on the Logon screen");
         pizzaHutLogonFlow.inputLogonInformation(logonInformation);
     }
 
-    @And("^the user click the Confirm button on the login screen$")
+    @And("^the user click the Confirm button on the Logon screen$")
     public void clickConfirmButton() {
 
         System.out.println("the user click confirm button");
@@ -44,7 +44,7 @@ public class PizzaHutLogonStep {
 
         System.out.println("the user direct to home screen");
         String msg = "the user can not direct to home screen";
-        boolean expected = pizzaHutLogonFlow.homeScreenDisplayed();
-        Assert.assertEquals(msg,true,expected);
+        boolean actual = pizzaHutLogonFlow.homeScreenDisplayed();
+        Assert.assertEquals(msg,true,actual);
     }
 }

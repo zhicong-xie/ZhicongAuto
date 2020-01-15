@@ -4,9 +4,7 @@ import com.zhiCong.plaform.base.config.AndroidDriverConfig;
 import com.zhiCong.plaform.base.config.IosDriverConfig;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.pagefactory.iOSFindBy;
+import io.appium.java_client.pagefactory.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -33,11 +31,11 @@ public class PizzaHutLogonPage {
     public WebElement iosAllowButton;
 
     @AndroidFindBy(id = "hk_btn")
-    @iOSFindBy(id = "splash btn hk tc")
+    @iOSFindBy(id = "splash btn hk en")
     public WebElement hkButton;
 
     @AndroidFindBy(id = "btnSkip")
-    @iOSFindBy(id = "略過")
+    @iOSFindBy(id = "Skip")
     public WebElement skipButton;
 
     @AndroidFindBy(id = "btnStart")
@@ -60,7 +58,14 @@ public class PizzaHutLogonPage {
     public WebElement passwordInputBox;
 
     @AndroidFindBy(id = "btnLogin")
-    @iOSFindBy(id = "general btn alert confirm tc")
+    @iOSFindBy(id = "general btn alert confirm en")
     public WebElement confirmButton;
+
+    @AndroidFindBy(id = "imgMenuItem")
+    @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell")
+    public WebElement homeButton;
+
+    @iOSFindBy(className = "XCUIElementTypeButton")
+    public WebElement apiConfirmButton;
 
 }

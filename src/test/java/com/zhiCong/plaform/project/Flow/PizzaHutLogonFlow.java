@@ -1,11 +1,11 @@
 package com.zhiCong.plaform.project.Flow;
 
-import com.zhiCong.plaform.base.AppiumHelp;
+import com.zhiCong.plaform.base.BaseFlow;
 import com.zhiCong.plaform.project.Page.PizzaHutLogonPage;
 
 import java.util.Map;
 
-public class PizzaHutLogonFlow extends AppiumHelp {
+public class PizzaHutLogonFlow extends BaseFlow {
 
     private PizzaHutLogonPage pizzaHutLogonPage;
 
@@ -40,9 +40,13 @@ public class PizzaHutLogonFlow extends AppiumHelp {
 
     public void clickConfirmButton(){
         pizzaHutLogonPage.confirmButton.click();
+        if ("ios".equals(System.getProperty("platform"))){
+            waitForElement(pizzaHutLogonPage.apiConfirmButton);
+            pizzaHutLogonPage.apiConfirmButton.click();
+        }
     }
 
     public boolean homeScreenDisplayed(){
-        return checkForElement(pizzaHutLogonPage.menuButton,50);
+        return checkForElement(pizzaHutLogonPage.menuButton,20);
     }
 }

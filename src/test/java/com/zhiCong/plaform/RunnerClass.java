@@ -11,7 +11,9 @@ import org.junit.runner.RunWith;
                 "html:target/cucumber-report/",
                 "json:target/cucumber-report/cucumber.json"
         },
-        tags = "@Pizza",
+//        tags = "@PizzaLogin",
+//        tags = "@testDemo",
+        tags = "@FindNonExistStore",
         features={"src/test/resources/Feature"}
 )
 
