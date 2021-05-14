@@ -1,10 +1,11 @@
 package com.zhiCong.plaform.project.Flow;
 
+import com.zhiCong.plaform.base.AppiumHelp;
 import com.zhiCong.plaform.project.Page.PizzaHutLogonPage;
 
 import java.util.Map;
 
-public class PizzaHutLogonFlow {
+public class PizzaHutLogonFlow extends AppiumHelp {
 
     private PizzaHutLogonPage pizzaHutLogonPage;
 
@@ -14,46 +15,34 @@ public class PizzaHutLogonFlow {
 
     public void onLoginScreen(){
         if ("ios".equals(System.getProperty("platform"))){
+            waitForElement(pizzaHutLogonPage.iosAllowButton);
             pizzaHutLogonPage.iosAllowButton.click();
         }
-        sleep(500L);
+        waitForElement(pizzaHutLogonPage.hkButton);
         pizzaHutLogonPage.hkButton.click();
-        sleep(5000L);
+        waitForElement(pizzaHutLogonPage.skipButton,15);
         pizzaHutLogonPage.skipButton.click();
-        sleep(500L);
         if ("android".equals(System.getProperty("platform"))){
+            waitForElement(pizzaHutLogonPage.aosStartButton);
             pizzaHutLogonPage.aosStartButton.click();
         }
-        sleep(500L);
+        waitForElement(pizzaHutLogonPage.menuButton);
         pizzaHutLogonPage.menuButton.click();
+        waitForElement(pizzaHutLogonPage.profileButton);
         pizzaHutLogonPage.profileButton.click();
-        sleep(500L);
-
     }
 
     public void inputLogonInformation(Map<String,String> logonInformation){
+        waitForElement(pizzaHutLogonPage.usernameInputBox);
         pizzaHutLogonPage.usernameInputBox.sendKeys(logonInformation.get("username"));
         pizzaHutLogonPage.passwordInputBox.sendKeys(logonInformation.get("password"));
     }
 
     public void clickConfirmButton(){
         pizzaHutLogonPage.confirmButton.click();
-        sleep(5000L);
     }
 
     public boolean homeScreenDisplayed(){
-        try {
-            return pizzaHutLogonPage.menuButton.isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
-    }
-
-    public void sleep(Long ms){
-        try{
-            Thread.sleep(ms);
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
+        return checkForElement(pizzaHutLogonPage.menuButton,50);
     }
 }
