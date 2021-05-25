@@ -4,15 +4,12 @@ package com.zhiCong.plaform.project.Flow;
 import com.zhiCong.plaform.base.BaseFlow;
 import com.zhiCong.plaform.project.Page.PizzaHutLogonPage;
 import com.zhiCong.plaform.project.Page.StoreLocatorPage;
-import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StoreLocatorFlow extends BaseFlow {
-
-    private AppiumDriver appiumDriver;
 
     private StoreLocatorPage storeLocatorPage;
     private PizzaHutLogonPage pizzaHutLogonPage;
@@ -53,17 +50,9 @@ public class StoreLocatorFlow extends BaseFlow {
     }
 
     public void toHomeScreen(){
-//        waitForElement(pizzaHutLogonPage.menuButton);
-//        pizzaHutLogonPage.menuButton.click();
-//        pizzaHutLogonPage.homeButton.click();
-        if ("ios".equals(System.getProperty("platform"))){
-            waitForElement(pizzaHutLogonPage.menuButton);
-            storeLocatorPage.menuButton.click();
-            waitForElement(pizzaHutLogonPage.homeButton);
-            pizzaHutLogonPage.homeButton.click();
-        }else if ("android".equals(System.getProperty("platform"))){
-            clickSystemBackButton();
-        }
+        waitForElement(pizzaHutLogonPage.menuButton);
+        storeLocatorPage.menuButton.click();
+        pizzaHutLogonPage.homeButton.click();
     }
 
 
