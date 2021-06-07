@@ -1,6 +1,6 @@
-package com.zhiCong.plaform.project.Step;
+package com.zhiCong.Plaform.Project.Step;
 
-import com.zhiCong.plaform.project.Flow.StoreLocatorFlow;
+import com.zhiCong.Plaform.Project.Flow.StoreLocatorFlow;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

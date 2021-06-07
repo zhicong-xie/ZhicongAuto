@@ -1,6 +1,6 @@
-package com.zhiCong.plaform.base;
+package com.zhiCong.Plaform.Base;
 
-import com.zhiCong.plaform.base.config.DriverConfig;
+import com.zhiCong.Plaform.Base.Config.DriverConfig;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;

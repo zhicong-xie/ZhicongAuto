@@ -1,7 +1,7 @@
-package com.zhiCong.plaform.project.Flow;
+package com.zhiCong.Plaform.Project.Flow;
 
-import com.zhiCong.plaform.base.BaseFlow;
-import com.zhiCong.plaform.project.Page.PizzaHutLogonPage;
+import com.zhiCong.Plaform.Base.BaseFlow;
+import com.zhiCong.Plaform.Project.Page.PizzaHutLogonPage;
 
 import java.util.Map;
 

@@ -1,6 +1,6 @@
-package com.zhiCong.plaform.project.Step;
+package com.zhiCong.Plaform.Project.Step;
 
-import com.zhiCong.plaform.project.Flow.PizzaHutLogonFlow;
+import com.zhiCong.Plaform.Project.Flow.PizzaHutLogonFlow;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;

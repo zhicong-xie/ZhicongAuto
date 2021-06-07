@@ -1,6 +1,6 @@
-package com.zhiCong.plaform.project.Page;
+package com.zhiCong.Plaform.Project.Page;
 
-import com.zhiCong.plaform.base.config.DriverConfig;
+import com.zhiCong.Plaform.Base.Config.DriverConfig;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.*;
 import org.openqa.selenium.WebElement;

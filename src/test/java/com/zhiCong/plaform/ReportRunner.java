@@ -1,4 +1,4 @@
-package com.zhiCong.plaform;
+package com.zhiCong.Plaform;
 
 import java.io.File;
 import java.io.IOException;

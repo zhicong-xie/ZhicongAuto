@@ -1,4 +1,4 @@
-package com.zhiCong.plaform.base.config;
+package com.zhiCong.Plaform.Base.Config;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
