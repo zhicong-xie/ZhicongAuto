@@ -33,7 +33,6 @@ public class StoreLocatorStep {
     @And("^the user return to Home screen$")
     public void toHomeScreen() {
 
-        System.out.println("the user click system back button");
         storeLocatorFlow.toHomeScreen();
     }
 

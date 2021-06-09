@@ -24,6 +24,9 @@ public class PizzaHutLogonPage {
     @iOSFindBy(id = "splash btn hk en")
     public WebElement hkButton;
 
+    @AndroidFindBy(id = "btnAlertPositive")
+    public WebElement tipsConfirmButton;
+
     @AndroidFindBy(id = "btnSkip")
     @iOSFindBy(id = "Skip")
     public WebElement skipButton;

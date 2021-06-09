@@ -20,6 +20,9 @@ public class PizzaHutLogonFlow extends BaseFlow {
         }
         waitForElement(pizzaHutLogonPage.hkButton);
         pizzaHutLogonPage.hkButton.click();
+        if ("android".equals(System.getProperty("platform")) && checkForElement(pizzaHutLogonPage.tipsConfirmButton)){
+            pizzaHutLogonPage.tipsConfirmButton.click();
+        }
         waitForElement(pizzaHutLogonPage.skipButton,15);
         pizzaHutLogonPage.skipButton.click();
         if ("android".equals(System.getProperty("platform"))){
