@@ -96,7 +96,7 @@ public class MultipleDriverConfig implements Callable<AppiumDriver> {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
       List<AppiumDriver> list = getDriverList();
       for (int i = 0; i < list.size(); i++) {
-        System.out.println(list.get(i).getAutomationName());
+        System.out.println(list.get(i).getPlatformName());
       }
     }
   }

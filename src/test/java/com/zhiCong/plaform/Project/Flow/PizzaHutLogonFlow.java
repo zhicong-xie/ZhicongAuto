@@ -15,117 +15,118 @@ import java.util.concurrent.ExecutionException;
 
 public class PizzaHutLogonFlow extends BaseFlow {
 
-    private List<AppiumDriver> appiumDriverList;
+  private List<AppiumDriver> appiumDriverList;
 
-    @iOSFindBy(id = "Allow")
-    public WebElement iosAllowButton;
+  @iOSFindBy(id = "Allow")
+  public WebElement iosAllowButton;
 
-    @AndroidFindBy(id = "hk_btn")
-    @iOSFindBy(id = "splash btn hk en")
-    public WebElement hkButton;
+  @AndroidFindBy(id = "hk_btn")
+  @iOSFindBy(id = "splash btn hk en")
+  public WebElement hkButton;
 
-    @AndroidFindBy(id = "btnAlertPositive")
-    public WebElement tipsConfirmButton;
+  @AndroidFindBy(id = "btnAlertPositive")
+  public WebElement tipsConfirmButton;
 
-    @AndroidFindBy(id = "btnSkip")
-    @iOSFindBy(id = "Skip")
-    public WebElement skipButton;
+  @AndroidFindBy(id = "btnSkip")
+  @iOSFindBy(id = "Skip")
+  public WebElement skipButton;
 
-    @AndroidFindBy(id = "btnStart")
-    public WebElement aosStartButton;
+  @AndroidFindBy(id = "btnStart")
+  public WebElement aosStartButton;
 
-    @AndroidFindBy(id = "imgMenu")
-    @iOSFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton")
-    public WebElement menuButton;
+  @AndroidFindBy(id = "imgMenu")
+  @iOSFindBy(xpath = "//XCUIElementTypeOther[2]/XCUIElementTypeButton")
+  public WebElement menuButton;
 
-    @AndroidFindBy(id = "imgProfile")
-    @iOSFindBy(xpath = "//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther")
-    public WebElement profileButton;
+  @AndroidFindBy(id = "imgProfile")
+  @iOSFindBy(
+      xpath =
+          "//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther")
+  public WebElement profileButton;
 
-    @AndroidFindBy(id = "txtAccountName")
-    @iOSFindBy(xpath = "//XCUIElementTypeTextField")
-    public WebElement usernameInputBox;
+  @AndroidFindBy(id = "txtAccountName")
+  @iOSFindBy(xpath = "//XCUIElementTypeTextField")
+  public WebElement usernameInputBox;
 
-    @AndroidFindBy(id = "txtPw")
-    @iOSFindBy(xpath = "//XCUIElementTypeSecureTextField")
-    public WebElement passwordInputBox;
+  @AndroidFindBy(id = "txtPw")
+  @iOSFindBy(xpath = "//XCUIElementTypeSecureTextField")
+  public WebElement passwordInputBox;
 
-    @AndroidFindBy(id = "btnLogin")
-    @iOSFindBy(id = "general btn alert confirm en")
-    public WebElement confirmButton;
+  @AndroidFindBy(id = "btnLogin")
+  @iOSFindBy(id = "general btn alert confirm en")
+  public WebElement confirmButton;
 
   @AndroidFindBy(id = "imgMenuItem")
   @iOSFindBy(xpath = "//XCUIElementTypeTable/XCUIElementTypeCell")
   public WebElement homeButton;
 
-    @iOSFindBy(className = "XCUIElementTypeButton")
-    public WebElement apiConfirmButton;
+  @iOSFindBy(className = "XCUIElementTypeButton")
+  public WebElement apiConfirmButton;
 
-    public PizzaHutLogonFlow() throws ExecutionException, InterruptedException {
-        appiumDriverList = MultipleDriverConfig.getDriverList();
-    }
+  public PizzaHutLogonFlow() throws ExecutionException, InterruptedException {
+    appiumDriverList = MultipleDriverConfig.getDriverList();
+  }
 
-    public void onLoginScreen() {
-        for (int i = 0; i<appiumDriverList.size();i++){
-            PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
-            if (appiumDriverList.get(i).getAutomationName().equals("UiAutomator2")){
-                waitForElement(appiumDriverList.get(i),hkButton);
-                hkButton.click();
-                sleep(5000l);
-                if (checkForElement(appiumDriverList.get(i),tipsConfirmButton)){
-                    tipsConfirmButton.click();
-                }
-                waitForElement(appiumDriverList.get(i),skipButton,60);
-                skipButton.click();
-                waitForElement(appiumDriverList.get(i),aosStartButton);
-                aosStartButton.click();
-                waitForElement(appiumDriverList.get(i),menuButton);
-                menuButton.click();
-                waitForElement(appiumDriverList.get(i),profileButton);
-                profileButton.click();
-            }else if (appiumDriverList.get(i).getAutomationName().equals("XCUITest")){
-                waitForElement(appiumDriverList.get(i),iosAllowButton);
-                iosAllowButton.click();
-                waitForElement(appiumDriverList.get(i),hkButton);
-                hkButton.click();
-                waitForElement(appiumDriverList.get(i),skipButton,60);
-                skipButton.click();
-                waitForElement(appiumDriverList.get(i),menuButton);
-                menuButton.click();
-                waitForElement(appiumDriverList.get(i),profileButton);
-                profileButton.click();
-            }
-
+  public void onLoginScreen() {
+    for (int i = 0; i < appiumDriverList.size(); i++) {
+      PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
+      if (appiumDriverList.get(i).getPlatformName().equalsIgnoreCase("android")) {
+        waitForElement(appiumDriverList.get(i), hkButton);
+        hkButton.click();
+        sleep(5000l);
+        if (checkForElement(appiumDriverList.get(i), tipsConfirmButton)) {
+          tipsConfirmButton.click();
         }
+        waitForElement(appiumDriverList.get(i), skipButton, 60);
+        skipButton.click();
+        waitForElement(appiumDriverList.get(i), aosStartButton);
+        aosStartButton.click();
+        waitForElement(appiumDriverList.get(i), menuButton);
+        menuButton.click();
+        waitForElement(appiumDriverList.get(i), profileButton);
+        profileButton.click();
+      } else if (appiumDriverList.get(i).getPlatformName().equalsIgnoreCase("ios")) {
+        waitForElement(appiumDriverList.get(i), iosAllowButton);
+        iosAllowButton.click();
+        waitForElement(appiumDriverList.get(i), hkButton);
+        hkButton.click();
+        waitForElement(appiumDriverList.get(i), skipButton, 60);
+        skipButton.click();
+        waitForElement(appiumDriverList.get(i), menuButton);
+        menuButton.click();
+        waitForElement(appiumDriverList.get(i), profileButton);
+        profileButton.click();
+      }
     }
+  }
 
-    public void inputLogonInformation(Map<String,String> logonInformation){
-        for (int i = 0; i<appiumDriverList.size();i++){
-            PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
-            waitForElement(appiumDriverList.get(i),usernameInputBox);
-            usernameInputBox.sendKeys(logonInformation.get("username"));
-            passwordInputBox.sendKeys(logonInformation.get("password"));
-        }
+  public void inputLogonInformation(Map<String, String> logonInformation) {
+    for (int i = 0; i < appiumDriverList.size(); i++) {
+      PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
+      waitForElement(appiumDriverList.get(i), usernameInputBox);
+      usernameInputBox.sendKeys(logonInformation.get("username"));
+      passwordInputBox.sendKeys(logonInformation.get("password"));
     }
+  }
 
-    public void clickConfirmButton(){
-        for (int i = 0; i<appiumDriverList.size();i++){
-            PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
-            if (appiumDriverList.get(i).getAutomationName().equals("XCUITest")){
-                waitForElement(appiumDriverList.get(i),apiConfirmButton).click();
-            }else {
-                waitForElement(appiumDriverList.get(i),confirmButton).click();
-            }
-        }
+  public void clickConfirmButton() {
+    for (int i = 0; i < appiumDriverList.size(); i++) {
+      PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
+      if (appiumDriverList.get(i).getPlatformName().equalsIgnoreCase("ios")) {
+        waitForElement(appiumDriverList.get(i), apiConfirmButton).click();
+      } else if (appiumDriverList.get(i).getPlatformName().equalsIgnoreCase("android")) {
+        waitForElement(appiumDriverList.get(i), confirmButton).click();
+      }
     }
+  }
 
-    public boolean homeScreenDisplayed(){
-        for (int i = 0; i<appiumDriverList.size();i++){
-            PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
-            if (!checkForElement(appiumDriverList.get(i),menuButton)){
-                return false;
-            }
-        }
-        return true;
+  public boolean homeScreenDisplayed() {
+    for (int i = 0; i < appiumDriverList.size(); i++) {
+      PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
+      if (!checkForElement(appiumDriverList.get(i), menuButton)) {
+        return false;
+      }
     }
+    return true;
+  }
 }
