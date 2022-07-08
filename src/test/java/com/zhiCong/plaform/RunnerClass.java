@@ -6,15 +6,12 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin ={
-                "pretty",
-                "html:target/cucumber-report/",
-                "json:target/cucumber-report/cucumber.json"
-        },
-        tags = "@PizzaLogin",
-//        tags = "@FindNonExistStore",
-        features={"src/test/resources/Feature"}
-)
-
-public class RunnerClass {
-}
+    plugin = {
+      "pretty",
+      "html:target/cucumber-report/",
+      "json:target/cucumber-report/cucumber.json"
+    },
+    //    tags = "@PizzaLogin",
+    tags = "@FindNonExistStore",
+    features = {"src/test/resources/Feature"})
+public class RunnerClass {}
