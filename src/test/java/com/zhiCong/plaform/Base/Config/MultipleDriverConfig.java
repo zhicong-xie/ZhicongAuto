@@ -32,7 +32,7 @@ public class MultipleDriverConfig implements Callable<AppiumDriver> {
       if (capabilityName.equals("proxy")) {
         proxy = driverHashMap.get(capabilityName);
         System.out.println(key + "'s proxy : " + proxy);
-      }else {
+      } else {
         des.setCapability(capabilityName, driverHashMap.get(capabilityName));
       }
     }

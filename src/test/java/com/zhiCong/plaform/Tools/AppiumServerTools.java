@@ -41,7 +41,7 @@ public class AppiumServerTools {
     des.setCapability("deviceName", "emulator-5554");
     des.setCapability("automationName", "UiAutomator2");
     try {
-      driver = new AppiumDriver(new URL(String.format("http://127.0.0.1:%s/wd/hub",proxy)), des);
+      driver = new AppiumDriver(new URL(String.format("http://127.0.0.1:%s/wd/hub", proxy)), des);
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
