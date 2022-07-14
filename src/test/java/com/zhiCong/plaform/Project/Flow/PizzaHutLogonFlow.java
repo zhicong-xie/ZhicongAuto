@@ -71,31 +71,20 @@ public class PizzaHutLogonFlow extends BaseFlow {
     for (int i = 0; i < appiumDriverList.size(); i++) {
       PageFactory.initElements(new AppiumFieldDecorator(appiumDriverList.get(i)), this);
       if (appiumDriverList.get(i).getPlatformName().equalsIgnoreCase("android")) {
-        waitForElement(appiumDriverList.get(i), hkButton);
-        hkButton.click();
-        sleep(5000l);
+        waitForElement(appiumDriverList.get(i), hkButton).click();
         if (checkForElement(appiumDriverList.get(i), tipsConfirmButton)) {
           tipsConfirmButton.click();
         }
-        waitForElement(appiumDriverList.get(i), skipButton, 60);
-        skipButton.click();
-        waitForElement(appiumDriverList.get(i), aosStartButton);
-        aosStartButton.click();
-        waitForElement(appiumDriverList.get(i), menuButton);
-        menuButton.click();
-        waitForElement(appiumDriverList.get(i), profileButton);
-        profileButton.click();
+        waitForElement(appiumDriverList.get(i), skipButton, 60).click();
+        waitForElement(appiumDriverList.get(i), aosStartButton).click();
+        waitForElement(appiumDriverList.get(i), menuButton).click();
+        waitForElement(appiumDriverList.get(i), profileButton).click();
       } else if (appiumDriverList.get(i).getPlatformName().equalsIgnoreCase("ios")) {
-        waitForElement(appiumDriverList.get(i), iosAllowButton);
-        iosAllowButton.click();
-        waitForElement(appiumDriverList.get(i), hkButton);
-        hkButton.click();
-        waitForElement(appiumDriverList.get(i), skipButton, 60);
-        skipButton.click();
-        waitForElement(appiumDriverList.get(i), menuButton);
-        menuButton.click();
-        waitForElement(appiumDriverList.get(i), profileButton);
-        profileButton.click();
+        waitForElement(appiumDriverList.get(i), iosAllowButton).click();
+        waitForElement(appiumDriverList.get(i), hkButton).click();
+        waitForElement(appiumDriverList.get(i), skipButton, 60).click();
+        waitForElement(appiumDriverList.get(i), menuButton).click();
+        waitForElement(appiumDriverList.get(i), profileButton).click();
       }
     }
   }
