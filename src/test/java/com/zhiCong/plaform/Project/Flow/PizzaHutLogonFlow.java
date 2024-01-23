@@ -1,7 +1,6 @@
 package com.zhiCong.Plaform.Project.Flow;
 
 import com.zhiCong.Plaform.Base.BaseFlow;
-import com.zhiCong.Plaform.Base.Config.MultipleDriverConfig;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
@@ -64,7 +63,7 @@ public class PizzaHutLogonFlow extends BaseFlow {
   public WebElement apiConfirmButton;
 
   public PizzaHutLogonFlow() throws ExecutionException, InterruptedException {
-    appiumDriverList = MultipleDriverConfig.getDriverList();
+
   }
 
   public void onLoginScreen() {
