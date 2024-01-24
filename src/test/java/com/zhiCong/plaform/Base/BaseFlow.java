@@ -97,9 +97,19 @@ public class BaseFlow {
         break;
       } else {
         swipeToDown();
-        System.out.println("waiting two seconds");
         waitForSeconds(2);
       }
     }
+  }
+
+  protected WebElement findByText(String text){
+    WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
+    return w.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath(String.format("//*[contains(text(),'%s')]",text)))));
+  }
+
+  protected void mouseMovementAndClickElement(WebElement webElement){
+    Actions actions = new Actions(webDriver);
+    actions.moveToElement(webElement).click().perform();
+    waitForSeconds(2);
   }
 }

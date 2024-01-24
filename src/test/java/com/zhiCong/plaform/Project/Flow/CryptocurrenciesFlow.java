@@ -68,4 +68,33 @@ public class CryptocurrenciesFlow extends BaseFlow {
         System.out.println("All currency list : "+allCurrencyName);
         return currencyNameList.size();
         }
+
+    public void clickBackToTopButton(){
+        waitForElement(cryptocurrenciesPage.backToTopButton).click();
+    }
+
+    public void clickSearchBar(){
+        waitForElement(cryptocurrenciesPage.searchBar).click();
+    }
+
+
+    public void selectCurrency(String currencyName){
+        mouseMovementAndClickElement(findByText(currencyName));
+    }
+
+    public void quitApp(){
+        webDriver.quit();
+    }
+
+    public boolean isCurrencyDetailsScreenDisplayed(){
+        return checkForElement(cryptocurrenciesPage.coinmarketcapCurrencyDetailsTitle);
+    }
+
+    public void maximizeWindow(){
+        webDriver.manage().window().maximize();
+    }
+
+    public void inputSearchInputBar(String data){
+        waitForElement(cryptocurrenciesPage.searchInputBar).sendKeys(data);
+    }
 }

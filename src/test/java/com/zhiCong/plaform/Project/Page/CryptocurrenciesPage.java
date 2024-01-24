@@ -27,4 +27,16 @@ public class CryptocurrenciesPage {
 
     @FindBy(xpath = "//div[@class = 'sc-adbfcfff-3 dDrhas']")
     public List<WebElement> currencyNameList;
+
+    @FindBy(xpath = "//div[@class = 'sc-4ce79553-0 hHIalA visible']")
+    public WebElement backToTopButton;
+
+    @FindBy(xpath = "//div[@class = 'sc-e20acb0c-1 fWcxPm']")
+    public WebElement searchBar;
+
+    @FindBy(id = "section-coin-overview")
+    public WebElement coinmarketcapCurrencyDetailsTitle;
+
+    @FindBy(xpath = "//div[@class = 'sc-8829bc3d-6 eHPaKU']/input")
+    public WebElement searchInputBar;
 }
