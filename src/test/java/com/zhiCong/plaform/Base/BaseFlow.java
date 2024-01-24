@@ -5,10 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,8 +18,9 @@ public class BaseFlow {
   private final int defaultShortWaitingTime = 3;
   private final int defaultNumOfSwipe = 3;
   private WebDriver webDriver;
+  private final int defaultSwipePixel = 600;
 
-  public BaseFlow(){
+  public BaseFlow() {
     WebDriverConfig.getInstance();
     webDriver = WebDriverConfig.getDriver();
   }
@@ -47,11 +45,10 @@ public class BaseFlow {
     }
   }
 
-  protected WebElement waitForElement( WebElement webElement) {
+  protected WebElement waitForElement(WebElement webElement) {
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
     return w.until(ExpectedConditions.visibilityOf(webElement));
   }
-
 
   protected WebElement waitForElement(WebElement webElement, Integer timeInSeconds) {
     WebDriverWait w = new WebDriverWait(webDriver, timeInSeconds);
@@ -63,51 +60,46 @@ public class BaseFlow {
     return w.until(ExpectedConditions.visibilityOf(webElements.get(0)));
   }
 
-  protected WebElement waitForElements(
-          List<WebElement> webElements, Integer timeInSeconds) {
+  protected WebElement waitForElements(List<WebElement> webElements, Integer timeInSeconds) {
     WebDriverWait w = new WebDriverWait(webDriver, timeInSeconds);
     return w.until(ExpectedConditions.visibilityOf(webElements.get(0)));
   }
 
-
-  protected void sleep(Long ms) {
+  protected void waitForSeconds(int waitingSecods) {
     try {
-      Thread.sleep(ms);
+      Thread.sleep(waitingSecods * 1000);
     } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
 
   protected void swipeToDown() {
-    ((JavascriptExecutor) webDriver).executeScript("window.scrollBy(0, 600);");
+    ((JavascriptExecutor) webDriver).executeScript(String.format("window.scrollBy(0, %d);",defaultSwipePixel));
   }
 
-  protected void swipeToDownFindElement(WebElement webElement){
-    for (int i = 0;i<defaultNumOfSwipe;i++){
-      if (!checkForElement(webElement,defaultShortWaitingTime)){
-        swipeToDown();
-        sleep(3000l);
-      }else {
+  protected void swipeToDown(int pixel) {
+    ((JavascriptExecutor) webDriver).executeScript(String.format("window.scrollBy(0, %d);",pixel));
+  }
+
+
+  protected void swipeToDownFindElement(WebElement webElement) {
+    ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(false);", webElement);
+  }
+
+  protected void swipeToBottom(){
+    JavascriptExecutor js = (JavascriptExecutor) webDriver;
+    int pageHeight = ((Long)js.executeScript("return document.body.scrollHeight")).intValue();
+
+    while (true){
+      int currentPosition = ((Long)js.executeScript("return window.pageYOffset")).intValue();
+      if (currentPosition >= pageHeight - 800){
+        System.out.println("The page has slid to the bottom");
         break;
-      }
-      if (i == defaultNumOfSwipe){
-        waitForElement(webElement);
+      } else {
+        swipeToDown();
+        System.out.println("waiting two seconds");
+        waitForSeconds(2);
       }
     }
   }
-
-  protected void swipeToDownFindElement(WebElement webElement,Integer numOfSwipe){
-    for (int i = 0;i<numOfSwipe;i++){
-      if (!checkForElement(webElement,defaultShortWaitingTime)){
-        swipeToDown();
-      }else {
-        break;
-      }
-      if (i == numOfSwipe){
-        waitForElement(webElement);
-      }
-    }
-  }
-
-
 }
