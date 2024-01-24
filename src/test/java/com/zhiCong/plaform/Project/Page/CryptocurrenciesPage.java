@@ -39,4 +39,7 @@ public class CryptocurrenciesPage {
 
     @FindBy(xpath = "//div[@class = 'sc-8829bc3d-6 eHPaKU']/input")
     public WebElement searchInputBar;
+
+    @FindBy(xpath = "//div[@class = 'sc-cca68cc8-1 kLnjVg']")
+    public WebElement searchRustltList;
 }

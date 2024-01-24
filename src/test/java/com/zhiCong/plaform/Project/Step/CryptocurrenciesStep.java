@@ -52,9 +52,9 @@ public class CryptocurrenciesStep {
     }
 
 
-    @When("^the user select \"([^\"]*)\" currency on Coinmarketcap screen$")
-    public void selectCurrency(String currency) {
-        cryptocurrenciesFlow.selectCurrency(currency);
+    @When("^the user select first search result on Coinmarketcap screen$")
+    public void selectFirstSearchResult() {
+        cryptocurrenciesFlow.selectFirstSearchResult();
     }
 
     @When("^the user quit app$")

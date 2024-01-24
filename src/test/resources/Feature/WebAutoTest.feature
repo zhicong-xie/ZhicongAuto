@@ -13,8 +13,8 @@ Feature: Assessment for Senior QA Office
     Then the user able to see Coinmarketcap screen
     When the user Maximize window
 #    When the user click Back to top button on Coinmarketcap screen
-    When the user click Search bar on Coinmarketcap screen
+    And the user click Search bar on Coinmarketcap screen
     And the user input "LOOM" in Search input bar on Coinmarketcap screen
-    And the user select "LOOM" currency on Coinmarketcap screen
+    And the user select first search result on Coinmarketcap screen
     Then the user able to see Coinmarketcap currency details screen
     When the user quit app

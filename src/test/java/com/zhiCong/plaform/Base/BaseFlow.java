@@ -110,6 +110,5 @@ public class BaseFlow {
   protected void mouseMovementAndClickElement(WebElement webElement){
     Actions actions = new Actions(webDriver);
     actions.moveToElement(webElement).click().perform();
-    waitForSeconds(2);
   }
 }

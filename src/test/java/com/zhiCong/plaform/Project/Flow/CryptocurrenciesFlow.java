@@ -78,8 +78,8 @@ public class CryptocurrenciesFlow extends BaseFlow {
     }
 
 
-    public void selectCurrency(String currencyName){
-        mouseMovementAndClickElement(findByText(currencyName));
+    public void selectFirstSearchResult(){
+        waitForElement(cryptocurrenciesPage.searchRustltList).click();
     }
 
     public void quitApp(){
