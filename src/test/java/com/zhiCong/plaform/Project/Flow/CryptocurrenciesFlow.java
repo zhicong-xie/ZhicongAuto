@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CryptocurrenciesFlow extends BaseFlow {
 
@@ -132,14 +130,12 @@ public class CryptocurrenciesFlow extends BaseFlow {
             filerCurrency.get(i).click();
             BigDecimal expected = new BigDecimal(keepNumbersDecimalPoints(cryptocurrenciesPage.chartFilterProportionList.get(i).getText()));
 
-            boolean isListExpand = false;
             BigDecimal currentCurrencyAmount = BigDecimal.valueOf(0);
 
             //展开该表格的所有数据
             for (int j = 0; j<3; j++){
                 if (checkForElement(cryptocurrenciesPage.loadingMoreButton,3)){
                     cryptocurrenciesPage.loadingMoreButton.click();
-                    isListExpand = true;
                     swipeToDown();
                 }
             }
@@ -147,24 +143,11 @@ public class CryptocurrenciesFlow extends BaseFlow {
             //获取该货币的金额
             List<WebElement> currencyAmountList = cryptocurrenciesPage.refinedBalanceList;
             for (int x = 0; x<currencyAmountList.size();x++){
-                if ((x+1)%3==0){
+                if ((x+1)%4==0){
                     BigDecimal amount = new BigDecimal(keepNumbersDecimalPoints(currencyAmountList.get(x).getText()));
                     currentCurrencyAmount = currentCurrencyAmount.add(amount);
                     }else {
                     continue;
-                }
-            }
-
-            //获取展开列表的数据
-            if (isListExpand){
-                List<WebElement> expandAmountList = cryptocurrenciesPage.expandBalanceList;
-                for (int y = 0; y<expandAmountList.size(); y++){
-                    if ((y+1)%3==0){
-                        BigDecimal amount = new BigDecimal(keepNumbersDecimalPoints(expandAmountList.get(y).getText()));
-                        currentCurrencyAmount = currentCurrencyAmount.add(amount);
-                    }else {
-                        continue;
-                    }
                 }
             }
             System.out.println(String.format("%s currency total balance : %s",currencyName,currentCurrencyAmount));

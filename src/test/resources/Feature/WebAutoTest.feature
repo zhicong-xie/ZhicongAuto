@@ -29,3 +29,14 @@ Feature: Assessment for Senior QA Office
     When the user select "Binance" spot exchange on Top Cryptocurrency Spot Exchanges screen
     Then the user able to see Binance Spot Exchanges details screen
     And the user check Binance Exchange Proportion on Binance Spot Exchanges details screen
+
+  @AC7.8
+  Scenario: select MetaMask on Supported wallets
+    Given the user open "https://yogapetz-prelaunch-website.vercel.app" url on Google Chrome
+    Then the user able to see Yogapetz screen
+    When the user click Menu button on Yogapetz screen
+    And the user click Setting button on Yogapetz screen
+    And the user click "Connect wallet" button on Yogapetz screen
+    Then the user able to see Connect a Wallet partial modal
+    When the user click "MetaMask" button on Yogapetz screen
+

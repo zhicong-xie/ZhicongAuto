@@ -61,16 +61,13 @@ public class CryptocurrenciesPage {
     @FindBy(xpath = "//*[contains (@class, 'sc-b27a436d-10 LQXt')]/p[@class = 'sc-4984dd93-0 cEFVjA']")
     public List<WebElement> chartFilterProportionList;
 
-    @FindBy(xpath = "//table[@class = 'sc-feda9013-3 gLzycC cmc-table  ']//td[@style = 'text-align:end']")
+    @FindBy(xpath = "//table[@class = 'sc-feda9013-3 gLzycC cmc-table  ']//td[contains(@style, 'text-align:')]")
     public List<WebElement> refinedBalanceList;
-
-  @FindBy(xpath = "//td[@style = 'text-align: end;']")
-  public List<WebElement> expandBalanceList;
 
     @FindBy(xpath = "//div[@class = 'sc-b27a436d-8 kbhqyE']//*[contains(text(),'Load More')]/..")
     public WebElement loadingMoreButton;
 
-  @FindBy(id = "onetrust-accept-btn-handler")
-  public WebElement acceptCookiesAndContinueButton;
+    @FindBy(id = "onetrust-accept-btn-handler")
+    public WebElement acceptCookiesAndContinueButton;
 
 }
