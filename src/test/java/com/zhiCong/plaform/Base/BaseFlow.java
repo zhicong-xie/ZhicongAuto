@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BaseFlow {
 
@@ -110,5 +112,11 @@ public class BaseFlow {
   protected void mouseMovementAndClickElement(WebElement webElement){
     Actions actions = new Actions(webDriver);
     actions.moveToElement(webElement).click().perform();
+  }
+
+  protected String keepNumbersDecimalPoints(String data){
+    Pattern pattern = Pattern.compile("[^0-9.]");
+    Matcher matcher = pattern.matcher(data);
+    return matcher.replaceAll("");
   }
 }

@@ -19,7 +19,7 @@ public class CryptocurrenciesPage {
             PageFactory.initElements(webDriver, this);
         }
 
-    @FindBy(xpath = "//div[@class = \"container\"]")
+    @FindBy(xpath = "//a[@class = 'sc-f2e7c84b-2 bOPkpb cmc-logo tooltip']")
     public WebElement coinmarketcapTitle;
 
     @FindBy(id = "drop-anchor")
@@ -42,4 +42,35 @@ public class CryptocurrenciesPage {
 
     @FindBy(xpath = "//div[@class = 'sc-cca68cc8-1 kLnjVg']")
     public WebElement searchRustltList;
+
+    @FindBy(xpath = "//div[@class = 'sc-8b3d12a8-1 hDjzmZ menu-item-1']")
+    public WebElement exchangeButton;
+
+    @FindBy(xpath = "//div[@class ='sc-f70bb44c-0 dcmrty']")
+    public WebElement topCryptocurrencySpotExchangesTitle;
+
+    @FindBy(xpath = "//h1[@class = 'sc-aba8b85a-0 sc-d36bb8b9-3 dtdOWf']")
+    public WebElement binanceSpotExchangesDetailsTitle;
+
+    @FindBy(xpath = "//span[@class = 'sc-4984dd93-0 fREVOF priceText']")
+    public WebElement spotExchangesDetailsBalance;
+
+    @FindBy(xpath = "//*[contains (@class, 'sc-b27a436d-10 LQXt')]/p[@class = 'sc-4984dd93-0 kKpPOn']")
+    public List<WebElement> chartFilterCurrencyButtonList;
+
+    @FindBy(xpath = "//*[contains (@class, 'sc-b27a436d-10 LQXt')]/p[@class = 'sc-4984dd93-0 cEFVjA']")
+    public List<WebElement> chartFilterProportionList;
+
+    @FindBy(xpath = "//table[@class = 'sc-feda9013-3 gLzycC cmc-table  ']//td[@style = 'text-align:end']")
+    public List<WebElement> refinedBalanceList;
+
+  @FindBy(xpath = "//td[@style = 'text-align: end;']")
+  public List<WebElement> expandBalanceList;
+
+    @FindBy(xpath = "//div[@class = 'sc-b27a436d-8 kbhqyE']//*[contains(text(),'Load More')]/..")
+    public WebElement loadingMoreButton;
+
+  @FindBy(id = "onetrust-accept-btn-handler")
+  public WebElement acceptCookiesAndContinueButton;
+
 }

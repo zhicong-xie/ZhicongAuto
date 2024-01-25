@@ -8,7 +8,7 @@ Feature: Assessment for Senior QA Office
     When the user quit app
 
   @AC7.6
-  Scenario: select LOOM currency
+  Scenario: select LOOM currency and direct currency details screen
     Given the user open "https://coinmarketcap.com/" url on Google Chrome
     Then the user able to see Coinmarketcap screen
     When the user Maximize window
@@ -18,3 +18,14 @@ Feature: Assessment for Senior QA Office
     And the user select first search result on Coinmarketcap screen
     Then the user able to see Coinmarketcap currency details screen
     When the user quit app
+
+  @AC7.7
+  Scenario: check Binance Exchange Proportion
+    Given the user open "https://coinmarketcap.com/" url on Google Chrome
+    Then the user able to see Coinmarketcap screen
+    When the user Maximize window
+    And the user click Exchange button on Coinmarketcap screen
+    Then the user able to see Top Cryptocurrency Spot Exchanges screen
+    When the user select "Binance" spot exchange on Top Cryptocurrency Spot Exchanges screen
+    Then the user able to see Binance Spot Exchanges details screen
+    And the user check Binance Exchange Proportion on Binance Spot Exchanges details screen
