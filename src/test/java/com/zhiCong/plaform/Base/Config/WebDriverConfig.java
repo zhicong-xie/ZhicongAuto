@@ -2,6 +2,7 @@ package com.zhiCong.Plaform.Base.Config;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public class WebDriverConfig {
@@ -18,7 +19,9 @@ public class WebDriverConfig {
 
     private WebDriverConfig() {
         System.setProperty("webdriver.chrome.driver","/Users/automatiautomationon/Downloads/chromedriver-mac-x64/chromedriver");
-        webDriver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--user-data-dir=/Users/automatiautomationon/Chrome profile/Profile 1");
+        webDriver = new ChromeDriver(chromeOptions);
     }
 
     public static WebDriver getDriver() {

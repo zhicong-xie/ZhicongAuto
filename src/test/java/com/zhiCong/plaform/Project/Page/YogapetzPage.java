@@ -16,15 +16,12 @@ public class YogapetzPage {
         PageFactory.initElements(webDriver, this);
     }
 
-    @FindBy(xpath = "//div[@class = 'container relative flex items-center justify-center py-7']")
+    @FindBy(xpath = "//div[@class = 'page_username__sx3tP']")
     public WebElement yogapetzTitle;
 
-    @FindBy(xpath = "//div[@class = 'absolute left-6 top-1/2 -translate-y-1/2 flex items-center justify-center']")
+    @FindBy(xpath = "//div[@class= 'absolute left-6 top-1/2 -translate-y-1/2 flex items-center justify-center']")
     public WebElement menuButton;
 
     @FindBy(xpath = "//a[@class = 'flex-shrink-0 ml-auto inline-flex items-center justify-center']")
     public WebElement settingButton;
-
-    @FindBy(xpath = "//h1[@class = 'iekbcc0 ju367vgo ju367v11 ju367v16 ju367v1d ju367v2q']")
-    public WebElement connectWalletPartialModalTitle;
 }

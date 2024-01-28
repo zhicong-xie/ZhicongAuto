@@ -29,8 +29,9 @@ Feature: Assessment for Senior QA Office
     When the user select "Binance" spot exchange on Top Cryptocurrency Spot Exchanges screen
     Then the user able to see Binance Spot Exchanges details screen
     And the user check Binance Exchange Proportion on Binance Spot Exchanges details screen
+    When the user quit app
 
-  @AC7.8
+  @AC7.8 @AC7.9 @7.10
   Scenario: select MetaMask on Supported wallets
     Given the user open "https://yogapetz-prelaunch-website.vercel.app" url on Google Chrome
     Then the user able to see Yogapetz screen
@@ -38,5 +39,16 @@ Feature: Assessment for Senior QA Office
     And the user click Setting button on Yogapetz screen
     And the user click "Connect wallet" button on Yogapetz screen
     Then the user able to see Connect a Wallet partial modal
-    When the user click "MetaMask" button on Yogapetz screen
-
+    When the user click MetaMask button on Connect a Wallet partial modal
+    And the user click Get a Wallet button on Connect a Wallet partial modal
+    And the user click GET button on Connect a Wallet partial modal
+    And the user click Add to Chrome button on Connect a Wallet partial modal
+    Then the user able to see Chrome store screen
+    When the user click metamask io link on Chrome store screen
+    And the user click Got it button on Chrome store screen
+    And the user switch to last window
+    Then the Browser is opening "https://metamask.io/" url on Google Chrome
+    When the user switch to first window
+    Then the user able to see Yogapetz screen
+    Then the Browser is opening "https://yogapetz-prelaunch-website.vercel.app/mission" url on Google Chrome
+    When the user quit app

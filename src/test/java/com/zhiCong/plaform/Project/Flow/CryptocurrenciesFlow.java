@@ -24,6 +24,10 @@ public class CryptocurrenciesFlow extends BaseFlow {
         webDriver.get(url);
     }
 
+    public String getBrowserOpenUrl(){
+        return webDriver.getCurrentUrl();
+    }
+
     public boolean isCoinmarketcapScreenDisplayed(){
         return checkForElement(cryptocurrenciesPage.coinmarketcapTitle);
     }
@@ -166,7 +170,4 @@ public class CryptocurrenciesFlow extends BaseFlow {
             }
             return true;
         }
-
-
-
     }

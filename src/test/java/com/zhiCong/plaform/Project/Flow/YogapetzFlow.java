@@ -31,7 +31,16 @@ public class YogapetzFlow extends BaseFlow {
         findByText(text).click();
     }
 
-    public boolean isConnectWalletPartialModalDisplayed(){
-        return checkForElement(yogapetzPage.connectWalletPartialModalTitle);
+    public void userSwitchToWindow(String item){
+        waitForSeconds(10);
+        switch (item){
+            case "last":
+                switchToLastWindow();
+                break;
+            case "first":
+                switchToFirstWindow();
+                break;
+        }
+
     }
 }

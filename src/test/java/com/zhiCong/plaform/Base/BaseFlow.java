@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -118,5 +119,24 @@ public class BaseFlow {
     Pattern pattern = Pattern.compile("[^0-9.]");
     Matcher matcher = pattern.matcher(data);
     return matcher.replaceAll("");
+  }
+
+  protected void switchToLastWindow(){
+    ArrayList<String> windows = new ArrayList<>(webDriver.getWindowHandles());
+    webDriver.switchTo().window(windows.get(windows.size()-1));
+  }
+
+  protected void switchToFirstWindow(){
+    ArrayList<String> windows = new ArrayList<>(webDriver.getWindowHandles());
+    webDriver.switchTo().window(windows.get(0));
+  }
+
+  protected void switchToSpecificWindow(int windowIndex){
+    ArrayList<String> windows = new ArrayList<>(webDriver.getWindowHandles());
+    try{
+      webDriver.switchTo().window(windows.get(windowIndex));
+    }catch (Exception e){
+      e.printStackTrace();
+    }
   }
 }

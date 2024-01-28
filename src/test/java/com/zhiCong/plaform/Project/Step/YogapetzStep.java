@@ -1,10 +1,10 @@
 package com.zhiCong.Plaform.Project.Step;
 
 import com.zhiCong.Plaform.Project.Flow.YogapetzFlow;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+
 
 public class YogapetzStep {
 
@@ -42,11 +42,9 @@ public class YogapetzStep {
         yogapetzFlow.clickButtonByText(button);
     }
 
-    @Then("^the user able to see Connect a Wallet partial modal$")
-    public void isConnectWalletPartialModalDisplayed() {
-        boolean expected = true;
-        String msg = "the user can not direct to Connect a Wallet partial modal";
-        boolean actual = yogapetzFlow.isConnectWalletPartialModalDisplayed();
-        Assert.assertEquals(msg, expected, actual);
+
+    @When("^the user switch to (last|first) window$")
+    public void userSwitchToWindow(String item) {
+        yogapetzFlow.userSwitchToWindow(item);
     }
 }

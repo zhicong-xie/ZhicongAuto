@@ -22,6 +22,14 @@ public class CryptocurrenciesStep {
         cryptocurrenciesFlow.openUrlOnGoogleChrome(url);
     }
 
+    @Then("^the Browser is opening \"([^\"]*)\" url on Google Chrome$")
+    public void isBrowserOpenUrl(String expected) {
+        String msg = String.format("The Browser is not opening this %s url",expected);
+        String actual = cryptocurrenciesFlow.getBrowserOpenUrl();
+        Assert.assertEquals(msg, expected, actual);
+    }
+
+
     @Then("^the user able to see Coinmarketcap screen$")
     public void isCoinmarketcapScreenDisplayed() {
         boolean expected = true;
