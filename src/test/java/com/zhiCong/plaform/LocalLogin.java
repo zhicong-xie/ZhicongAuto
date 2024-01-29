@@ -1,5 +1,6 @@
 package com.zhiCong.Plaform;
 
+import com.zhiCong.Plaform.Base.LocaleCSVParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -18,26 +19,13 @@ public class LocalLogin {
 
   public static void main(String[] args) throws InterruptedException, ParseException {
 
+      LocaleCSVParser.getInstance();
 
 
-      System.setProperty("webdriver.chrome.driver","/Users/automatiautomationon/Downloads/chromedriver-mac-x64/chromedriver");
-      ChromeOptions chromeOptions = new ChromeOptions();
-      chromeOptions.addArguments("--user-data-dir=/Users/automatiautomationon/Chrome profile/Profile 1");
 
+      System.out.println(LocaleCSVParser.getLocaleValue("About_LOOM_Network_title"));
 
-      WebDriver webDriver = new ChromeDriver(chromeOptions);
-
-      webDriver.get("https://baidu.com");
-
-      Actions actions = new Actions(webDriver);
-
-      WebElement moreBtn = webDriver.findElement(By.name("tj_briicon"));
-      actions.moveToElement(moreBtn);
-
-      WebElement mp3Link = webDriver.findElement(By.xpath("//a[@name = 'tj_mp3']"));
-
-
-      actions.moveToElement(mp3Link).click().perform();
+      System.out.println(LocaleCSVParser.getLocaleValue("About_LOOM_Network_description"));
 
 
 

@@ -70,4 +70,10 @@ public class CryptocurrenciesPage {
     @FindBy(id = "onetrust-accept-btn-handler")
     public WebElement acceptCookiesAndContinueButton;
 
+    @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 hNnCrE top']")
+    public WebElement loomNetWorkTitle;
+
+    @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 lcMKAk show']//p")
+    public List<WebElement> loomNetWorkDescriptionList;
+
 }

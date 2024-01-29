@@ -11,9 +11,7 @@ Feature: Assessment for Senior QA Office
   Scenario: select LOOM currency and direct currency details screen
     Given the user open "https://coinmarketcap.com/" url on Google Chrome
     Then the user able to see Coinmarketcap screen
-    When the user Maximize window
-#    When the user click Back to top button on Coinmarketcap screen
-    And the user click Search bar on Coinmarketcap screen
+    When the user click Search bar on Coinmarketcap screen
     And the user input "LOOM" in Search input bar on Coinmarketcap screen
     And the user select first search result on Coinmarketcap screen
     Then the user able to see Coinmarketcap currency details screen
@@ -23,15 +21,14 @@ Feature: Assessment for Senior QA Office
   Scenario: check Binance Exchange Proportion
     Given the user open "https://coinmarketcap.com/" url on Google Chrome
     Then the user able to see Coinmarketcap screen
-    When the user Maximize window
-    And the user click Exchange button on Coinmarketcap screen
+    When the user click Exchange button on Coinmarketcap screen
     Then the user able to see Top Cryptocurrency Spot Exchanges screen
     When the user select "Binance" spot exchange on Top Cryptocurrency Spot Exchanges screen
     Then the user able to see Binance Spot Exchanges details screen
     And the user check Binance Exchange Proportion on Binance Spot Exchanges details screen
     When the user quit app
 
-  @AC7.8 @AC7.9 @7.10
+  @AC7.8 @AC7.9 @AC7.10
   Scenario: select MetaMask on Supported wallets
     Given the user open "https://yogapetz-prelaunch-website.vercel.app" url on Google Chrome
     Then the user able to see Yogapetz screen
@@ -51,4 +48,15 @@ Feature: Assessment for Senior QA Office
     When the user switch to first window
     Then the user able to see Yogapetz screen
     Then the Browser is opening "https://yogapetz-prelaunch-website.vercel.app/mission" url on Google Chrome
+    When the user quit app
+
+  @AC7.12
+  Scenario: Check About LOOM NetWork copy
+    Given the user open "https://coinmarketcap.com/" url on Google Chrome
+    Then the user able to see Coinmarketcap screen
+    When the user click Search bar on Coinmarketcap screen
+    And the user input "LOOM" in Search input bar on Coinmarketcap screen
+    And the user select first search result on Coinmarketcap screen
+    Then the user able to see Coinmarketcap currency details screen
+    And the user able to see About LOOM NetWork copy on Coinmarketcap currency details screen
     When the user quit app

@@ -83,6 +83,14 @@ public class CryptocurrenciesStep {
         Assert.assertEquals(msg, expected, actual);
     }
 
+    @Then("^the user able to see About LOOM NetWork copy on Coinmarketcap currency details screen$")
+    public void checkLoomNetWorkCopy() {
+        boolean expected = true;
+        String msg = "the About LOOM NetWork copy is displayed incorrect";
+        boolean actual = cryptocurrenciesFlow.checkLoomNetWorkCopy();
+        Assert.assertEquals(msg, expected, actual);
+    }
+
     @When("^the user Maximize window$")
     public void maximizeWindow() {
         cryptocurrenciesFlow.maximizeWindow();
