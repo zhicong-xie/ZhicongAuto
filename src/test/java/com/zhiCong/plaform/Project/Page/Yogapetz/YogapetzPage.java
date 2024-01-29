@@ -1,4 +1,4 @@
-package com.zhiCong.Plaform.Project.Page;
+package com.zhiCong.Plaform.Project.Page.Yogapetz;
 
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
 import org.openqa.selenium.WebDriver;

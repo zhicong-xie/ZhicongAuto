@@ -1,11 +1,9 @@
-package com.zhiCong.Plaform.Project.Step;
+package com.zhiCong.Plaform.Project.Step.Yogapetz;
 
-import com.zhiCong.Plaform.Project.Flow.ConnectWalletPartialModalFlow;
+import com.zhiCong.Plaform.Project.Flow.Yogapetz.ConnectWalletPartialModalFlow;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
-
-import java.awt.*;
 
 public class ConnectWalletPartialModalStep {
 

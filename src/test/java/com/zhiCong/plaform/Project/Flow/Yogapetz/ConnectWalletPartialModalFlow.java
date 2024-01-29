@@ -1,16 +1,9 @@
-package com.zhiCong.Plaform.Project.Flow;
+package com.zhiCong.Plaform.Project.Flow.Yogapetz;
 
 import com.zhiCong.Plaform.Base.BaseFlow;
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
-import com.zhiCong.Plaform.Project.Page.ConnectWalletPartialModalPage;
+import com.zhiCong.Plaform.Project.Page.Yogapetz.ConnectWalletPartialModalPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 public class ConnectWalletPartialModalFlow extends BaseFlow {
 

@@ -1,8 +1,8 @@
-package com.zhiCong.Plaform.Project.Flow;
+package com.zhiCong.Plaform.Project.Flow.Yogapetz;
 
 import com.zhiCong.Plaform.Base.BaseFlow;
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
-import com.zhiCong.Plaform.Project.Page.YogapetzPage;
+import com.zhiCong.Plaform.Project.Page.Yogapetz.YogapetzPage;
 import org.openqa.selenium.WebDriver;
 
 public class YogapetzFlow extends BaseFlow {

@@ -1,8 +1,6 @@
-package com.zhiCong.Plaform.Project.Step;
+package com.zhiCong.Plaform.Project.Step.Coinmarketcap;
 
-import com.zhiCong.Plaform.Project.Flow.CryptocurrenciesFlow;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
+import com.zhiCong.Plaform.Project.Flow.Coinmarketcap.CryptocurrenciesFlow;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -71,22 +69,6 @@ public class CryptocurrenciesStep {
     cryptocurrenciesFlow.quitApp();
   }
 
-  @Then("^the user able to see Coinmarketcap currency details screen$")
-  public void isCurrencyDetailsScreenDisplayed() {
-    boolean expected = true;
-    String msg = "the user can not direct to Coinmarketcap currency details screen";
-    boolean actual = cryptocurrenciesFlow.isCurrencyDetailsScreenDisplayed();
-    Assert.assertEquals(msg, expected, actual);
-  }
-
-  @Then("^the user able to see About LOOM NetWork copy on Coinmarketcap currency details screen$")
-  public void checkLoomNetWorkCopy() {
-    boolean expected = true;
-    String msg = "the About LOOM NetWork copy is displayed incorrect";
-    boolean actual = cryptocurrenciesFlow.checkLoomNetWorkCopy();
-    Assert.assertEquals(msg, expected, actual);
-  }
-
   @When("^the user Maximize window$")
   public void maximizeWindow() {
     cryptocurrenciesFlow.maximizeWindow();
@@ -110,19 +92,4 @@ public class CryptocurrenciesStep {
     cryptocurrenciesFlow.selectSpotExchange(spotExchangeName);
   }
 
-  @Then("^the user able to see Binance Spot Exchanges details screen$")
-  public void isBinanceSpotExchangesDetailsScreenDisplayed() {
-    boolean expected = true;
-    String msg = "the user can not direct to Binance Spot Exchanges details screen";
-    boolean actual = cryptocurrenciesFlow.isBinanceSpotExchangesDetailsScreenDisplayed();
-    Assert.assertEquals(msg, expected, actual);
-  }
-
-  @Then("^the user check Binance Exchange Proportion on Binance Spot Exchanges details screen$")
-  public void isBinanceExchangeProportionPrecise() {
-    boolean expected = true;
-    String msg = "The Binance Exchange proportion is not precise";
-    boolean actual = cryptocurrenciesFlow.isBinanceExchangeProportionPrecise();
-    Assert.assertEquals(msg, expected, actual);
-  }
 }

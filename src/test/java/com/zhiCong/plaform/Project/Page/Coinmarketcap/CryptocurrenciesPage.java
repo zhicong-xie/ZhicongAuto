@@ -1,4 +1,4 @@
-package com.zhiCong.Plaform.Project.Page;
+package com.zhiCong.Plaform.Project.Page.Coinmarketcap;
 
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
 import org.openqa.selenium.WebDriver;
@@ -34,9 +34,6 @@ public class CryptocurrenciesPage {
   @FindBy(xpath = "//div[@class = 'sc-e20acb0c-1 fWcxPm']")
   public WebElement searchBar;
 
-  @FindBy(id = "section-coin-overview")
-  public WebElement coinmarketcapCurrencyDetailsTitle;
-
   @FindBy(xpath = "//div[@class = 'sc-8829bc3d-6 eHPaKU']/input")
   public WebElement searchInputBar;
 
@@ -48,35 +45,4 @@ public class CryptocurrenciesPage {
 
   @FindBy(xpath = "//div[@class ='sc-f70bb44c-0 dcmrty']")
   public WebElement topCryptocurrencySpotExchangesTitle;
-
-  @FindBy(xpath = "//h1[@class = 'sc-aba8b85a-0 sc-d36bb8b9-3 dtdOWf']")
-  public WebElement binanceSpotExchangesDetailsTitle;
-
-  @FindBy(xpath = "//span[@class = 'sc-4984dd93-0 fREVOF priceText']")
-  public WebElement spotExchangesDetailsBalance;
-
-  @FindBy(
-      xpath = "//*[contains (@class, 'sc-b27a436d-10 LQXt')]/p[@class = 'sc-4984dd93-0 kKpPOn']")
-  public List<WebElement> chartFilterCurrencyButtonList;
-
-  @FindBy(
-      xpath = "//*[contains (@class, 'sc-b27a436d-10 LQXt')]/p[@class = 'sc-4984dd93-0 cEFVjA']")
-  public List<WebElement> chartFilterProportionList;
-
-  @FindBy(
-      xpath =
-          "//table[@class = 'sc-feda9013-3 gLzycC cmc-table  ']//td[contains(@style, 'text-align:')]")
-  public List<WebElement> refinedBalanceList;
-
-  @FindBy(xpath = "//div[@class = 'sc-b27a436d-8 kbhqyE']//*[contains(text(),'Load More')]/..")
-  public WebElement loadingMoreButton;
-
-  @FindBy(id = "onetrust-accept-btn-handler")
-  public WebElement acceptCookiesAndContinueButton;
-
-  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 hNnCrE top']")
-  public WebElement loomNetWorkTitle;
-
-  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 lcMKAk show']//p")
-  public List<WebElement> loomNetWorkDescriptionList;
 }

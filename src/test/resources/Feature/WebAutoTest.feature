@@ -62,4 +62,12 @@ Feature: Assessment for Senior QA Office
     When the user quit app
 
   @AC7.13
-  Scenario: Check About LOOM NetWork copy
+  Scenario: Check watchlist functionality
+    Given the user open "https://coinmarketcap.com/" url on Google Chrome
+    Then the user able to see Coinmarketcap screen
+    When the user click Search bar on Coinmarketcap screen
+    And the user input "LOOM" in Search input bar on Coinmarketcap screen
+    And the user select first search result on Coinmarketcap screen
+    Then the user able to see Coinmarketcap currency details screen
+    When the user click Follow button on Coinmarketcap currency details screen
+    And the user click Watchlist button on Coinmarketcap currency details screen

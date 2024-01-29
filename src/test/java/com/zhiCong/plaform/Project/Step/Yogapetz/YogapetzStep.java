@@ -1,6 +1,6 @@
-package com.zhiCong.Plaform.Project.Step;
+package com.zhiCong.Plaform.Project.Step.Yogapetz;
 
-import com.zhiCong.Plaform.Project.Flow.YogapetzFlow;
+import com.zhiCong.Plaform.Project.Flow.Yogapetz.YogapetzFlow;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
