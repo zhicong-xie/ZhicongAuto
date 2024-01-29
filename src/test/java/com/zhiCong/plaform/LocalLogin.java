@@ -19,17 +19,10 @@ public class LocalLogin {
 
   public static void main(String[] args) throws InterruptedException, ParseException {
 
-      LocaleCSVParser.getInstance();
+    LocaleCSVParser.getInstance();
 
+    System.out.println(LocaleCSVParser.getLocaleValue("About_LOOM_Network_title"));
 
-
-      System.out.println(LocaleCSVParser.getLocaleValue("About_LOOM_Network_title"));
-
-      System.out.println(LocaleCSVParser.getLocaleValue("About_LOOM_Network_description"));
-
-
-
-
-
+    System.out.println(LocaleCSVParser.getLocaleValue("About_LOOM_Network_description"));
   }
 }

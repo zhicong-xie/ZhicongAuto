@@ -60,3 +60,6 @@ Feature: Assessment for Senior QA Office
     Then the user able to see Coinmarketcap currency details screen
     And the user able to see About LOOM NetWork copy on Coinmarketcap currency details screen
     When the user quit app
+
+  @AC7.13
+  Scenario: Check About LOOM NetWork copy

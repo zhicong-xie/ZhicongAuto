@@ -77,25 +77,26 @@ public class BaseFlow {
   }
 
   protected void swipeToDown() {
-    ((JavascriptExecutor) webDriver).executeScript(String.format("window.scrollBy(0, %d);",defaultSwipePixel));
+    ((JavascriptExecutor) webDriver)
+        .executeScript(String.format("window.scrollBy(0, %d);", defaultSwipePixel));
   }
 
   protected void swipeToDown(int pixel) {
-    ((JavascriptExecutor) webDriver).executeScript(String.format("window.scrollBy(0, %d);",pixel));
+    ((JavascriptExecutor) webDriver).executeScript(String.format("window.scrollBy(0, %d);", pixel));
   }
-
 
   protected void swipeToDownFindElement(WebElement webElement) {
-    ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(false);", webElement);
+    ((JavascriptExecutor) webDriver)
+        .executeScript("arguments[0].scrollIntoView(false);", webElement);
   }
 
-  protected void swipeToBottom(){
+  protected void swipeToBottom() {
     JavascriptExecutor js = (JavascriptExecutor) webDriver;
-    int pageHeight = ((Long)js.executeScript("return document.body.scrollHeight")).intValue();
+    int pageHeight = ((Long) js.executeScript("return document.body.scrollHeight")).intValue();
 
-    while (true){
-      int currentPosition = ((Long)js.executeScript("return window.pageYOffset")).intValue();
-      if (currentPosition >= pageHeight - 800){
+    while (true) {
+      int currentPosition = ((Long) js.executeScript("return window.pageYOffset")).intValue();
+      if (currentPosition >= pageHeight - 800) {
         System.out.println("The page has slid to the bottom");
         break;
       } else {
@@ -105,37 +106,39 @@ public class BaseFlow {
     }
   }
 
-  protected WebElement findByText(String text){
+  protected WebElement findByText(String text) {
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
-    return w.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath(String.format("//*[contains(text(),'%s')]",text)))));
+    return w.until(
+        ExpectedConditions.visibilityOf(
+            webDriver.findElement(By.xpath(String.format("//*[contains(text(),'%s')]", text)))));
   }
 
-  protected void mouseMovementAndClickElement(WebElement webElement){
+  protected void mouseMovementAndClickElement(WebElement webElement) {
     Actions actions = new Actions(webDriver);
     actions.moveToElement(webElement).click().perform();
   }
 
-  protected String keepNumbersDecimalPoints(String data){
+  protected String keepNumbersDecimalPoints(String data) {
     Pattern pattern = Pattern.compile("[^0-9.]");
     Matcher matcher = pattern.matcher(data);
     return matcher.replaceAll("");
   }
 
-  protected void switchToLastWindow(){
+  protected void switchToLastWindow() {
     ArrayList<String> windows = new ArrayList<>(webDriver.getWindowHandles());
-    webDriver.switchTo().window(windows.get(windows.size()-1));
+    webDriver.switchTo().window(windows.get(windows.size() - 1));
   }
 
-  protected void switchToFirstWindow(){
+  protected void switchToFirstWindow() {
     ArrayList<String> windows = new ArrayList<>(webDriver.getWindowHandles());
     webDriver.switchTo().window(windows.get(0));
   }
 
-  protected void switchToSpecificWindow(int windowIndex){
+  protected void switchToSpecificWindow(int windowIndex) {
     ArrayList<String> windows = new ArrayList<>(webDriver.getWindowHandles());
-    try{
+    try {
       webDriver.switchTo().window(windows.get(windowIndex));
-    }catch (Exception e){
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }

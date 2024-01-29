@@ -81,7 +81,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public void selectFirstSearchResult() {
-    waitForElement(cryptocurrenciesPage.searchRustltList).click();
+    waitForElement(cryptocurrenciesPage.searchResultList).click();
   }
 
   public void quitApp() {
@@ -188,14 +188,15 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public boolean checkLoomNetWorkCopy() {
+    swipeToDownFindElement(cryptocurrenciesPage.loomNetWorkTitle);
     String loomNetworkTitle =
         waitForElement(cryptocurrenciesPage.loomNetWorkTitle).getText().trim();
     String loomNetWorkDescription = "";
     for (WebElement webElement : cryptocurrenciesPage.loomNetWorkDescriptionList) {
       loomNetWorkDescription = loomNetWorkDescription + webElement.getText().trim();
     }
-    System.out.println(loomNetworkTitle);
-    System.out.println(loomNetWorkDescription);
+    System.out.println("actual copy title" + loomNetworkTitle);
+    System.out.println("actual copy description" + loomNetWorkDescription);
 
     return LocaleCSVParser.getLocaleValue("About_LOOM_Network_title").equals(loomNetworkTitle)
         && LocaleCSVParser.getLocaleValue("About_LOOM_Network_description")
