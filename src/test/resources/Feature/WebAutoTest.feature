@@ -71,3 +71,6 @@ Feature: Assessment for Senior QA Office
     Then the user able to see Coinmarketcap currency details screen
     When the user click Follow button on Coinmarketcap currency details screen
     And the user click Watchlist button on Coinmarketcap currency details screen
+    Then the user able to see Coinmarketcap watchlist screen
+    And the user able to see "LOOM" currency in watchlist on Coinmarketcap watchlist screen
+    When the user quit app

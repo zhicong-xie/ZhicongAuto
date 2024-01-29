@@ -41,6 +41,7 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
 
     public void clickFollowButton(){
         waitForElement(coinmarketcapCurrencyDetailsPage.followButton).click();
+        waitForSeconds(8);
     }
 
     public void clickWatchlistButton(){
