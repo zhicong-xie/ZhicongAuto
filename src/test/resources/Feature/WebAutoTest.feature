@@ -50,6 +50,16 @@ Feature: Assessment for Senior QA Office
     Then the Browser is opening "https://yogapetz-prelaunch-website.vercel.app/mission" url on Google Chrome
     When the user quit app
 
+  @AC7.11
+  Scenario: Verify that the 1D icon appears the same as the response
+    Given the user open "https://coinmarketcap.com/" url on Google Chrome
+    Then the user able to see Coinmarketcap screen
+    When the user click Fear and Greed Index chat on Coinmarketcap screen
+    Then the user able to see Global Live Cryptocurrency Charts screen
+
+    When the user quit app
+
+
   @AC7.12
   Scenario: Check About LOOM NetWork copy
     Given the user open "https://coinmarketcap.com/" url on Google Chrome

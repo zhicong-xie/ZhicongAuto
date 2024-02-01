@@ -59,7 +59,6 @@ public class CryptocurrenciesFlow extends BaseFlow {
     webDriver.quit();
   }
 
-
   public void maximizeWindow() {
     webDriver.manage().window().maximize();
   }
@@ -78,5 +77,9 @@ public class CryptocurrenciesFlow extends BaseFlow {
 
   public void selectSpotExchange(String spotExchangeName) {
     findByText(spotExchangeName).click();
+  }
+
+  public void clickFearAndGreedIndexChat() {
+    waitForElement(cryptocurrenciesPage.fearAndGreedIndexChat).click();
   }
 }

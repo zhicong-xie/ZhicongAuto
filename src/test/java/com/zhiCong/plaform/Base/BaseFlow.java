@@ -5,15 +5,28 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.google.common.collect.Maps.newLinkedHashMap;
 
 public class BaseFlow {
 
@@ -141,5 +154,67 @@ public class BaseFlow {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  protected JSONObject getApiResponse(String link, String requestMethod) throws IOException {
+    JSONObject jsonObject = new JSONObject(newLinkedHashMap());
+
+    URL url = new URL(link);
+
+    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+    try {
+      connection.setRequestMethod(requestMethod);
+
+      int responseCode = connection.getResponseCode();
+
+      if (responseCode == HttpURLConnection.HTTP_OK) {
+        BufferedReader reader =
+            new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+        String line;
+        StringBuilder response = new StringBuilder();
+
+        while ((line = reader.readLine()) != null) {
+          response.append(line);
+        }
+
+        reader.close();
+
+        jsonObject = new JSONObject(response.toString());
+
+        System.out.println("Api response: \n" + jsonObject);
+
+      } else {
+        System.err.println("error code" + responseCode);
+      }
+
+    } catch (Error e) {
+      e.printStackTrace();
+    } finally {
+      connection.disconnect();
+    }
+
+    return jsonObject;
+  }
+
+  protected HashMap<String, BigDecimal> getMarketCapData(JSONObject jsonObject) {
+    HashMap<String, BigDecimal> hashMap = new HashMap<>();
+
+    JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("quotes");
+
+    for (int i = 0; i < jsonArray.length(); i++) {
+      JSONObject obj = jsonArray.getJSONObject(i);
+
+      JSONArray jsonArray1 = obj.getJSONArray("quote");
+      JSONObject object = jsonArray1.getJSONObject(0);
+      String timestamp = object.getString("timestamp");
+      BigDecimal totalMarketCap = object.getBigDecimal("totalMarketCap");
+      hashMap.put(timestamp, totalMarketCap);
+    }
+
+    System.out.println("Market cap data: \n" + hashMap);
+
+    return hashMap;
   }
 }
