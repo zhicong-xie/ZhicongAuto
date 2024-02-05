@@ -46,6 +46,6 @@ public class CryptocurrenciesPage {
   @FindBy(xpath = "//div[@class ='sc-f70bb44c-0 dcmrty']")
   public WebElement topCryptocurrencySpotExchangesTitle;
 
-  @FindBy(xpath = "//div[@class ='sc-f70bb44c-0 fWFbMZ']")
+  @FindBy(xpath = "//div[@class ='sc-f70bb44c-0 jVLcFz']")
   public WebElement fearAndGreedIndexChat;
 }

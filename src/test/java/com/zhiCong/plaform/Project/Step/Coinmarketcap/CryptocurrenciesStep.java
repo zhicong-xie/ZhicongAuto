@@ -43,7 +43,7 @@ public class CryptocurrenciesStep {
   }
 
   @When("^the user click (Back to top button|Search bar|Exchange button|Fear and Greed Index chat) on Coinmarketcap screen$")
-  public void clickBackToTopButton(String btnName) throws IllegalAccessException {
+  public void clickButton(String btnName) throws IllegalAccessException {
     switch (btnName) {
       case "Back to top button":
         cryptocurrenciesFlow.clickBackToTopButton();
@@ -55,7 +55,7 @@ public class CryptocurrenciesStep {
         cryptocurrenciesFlow.clickExchangeButton();
         break;
       case "Fear and Greed Index chat":
-        cryptocurrenciesFlow.clickExchangeButton();
+        cryptocurrenciesFlow.clickFearAndGreedIndexChat();
         break;
       default:
         throw new IllegalAccessException(String.format("unexpected value for %s", btnName));

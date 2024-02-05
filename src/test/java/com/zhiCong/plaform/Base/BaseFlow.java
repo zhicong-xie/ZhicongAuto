@@ -1,10 +1,6 @@
 package com.zhiCong.Plaform.Base;
 
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.openqa.selenium.*;
@@ -17,12 +13,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -131,8 +125,22 @@ public class BaseFlow {
     actions.moveToElement(webElement).click().perform();
   }
 
+  protected void mouseMovement(WebElement webElement) {
+    Actions actions = new Actions(webDriver);
+    for (int i = 0; i < defaultNumOfSwipe; i++) {
+      actions.moveToElement(webElement).pause(2000).perform();
+      waitForSeconds(1);
+    }
+  }
+
+  protected void mouseMovementWithOffset(WebElement webElement, int xOffset, int yOffset) {
+    Actions actions = new Actions(webDriver);
+    actions.moveToElement(webElement, xOffset, yOffset).perform();
+    waitForSeconds(5);
+  }
+
   protected String keepNumbersDecimalPoints(String data) {
-    Pattern pattern = Pattern.compile("[^0-9.]");
+    Pattern pattern = Pattern.compile("[^\\d.-]");
     Matcher matcher = pattern.matcher(data);
     return matcher.replaceAll("");
   }
@@ -198,8 +206,9 @@ public class BaseFlow {
     return jsonObject;
   }
 
-  protected HashMap<String, BigDecimal> getMarketCapData(JSONObject jsonObject) {
-    HashMap<String, BigDecimal> hashMap = new HashMap<>();
+  protected HashMap<String, BigDecimal> getMarketCapData(JSONObject jsonObject)
+      throws ParseException {
+    HashMap<String, BigDecimal> hashMap = new LinkedHashMap<>();
 
     JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("quotes");
 
@@ -210,11 +219,119 @@ public class BaseFlow {
       JSONObject object = jsonArray1.getJSONObject(0);
       String timestamp = object.getString("timestamp");
       BigDecimal totalMarketCap = object.getBigDecimal("totalMarketCap");
-      hashMap.put(timestamp, totalMarketCap);
+      hashMap.put(timestampFormatConversion(timestamp), totalMarketCap);
     }
 
-    System.out.println("Market cap data: \n" + hashMap);
+    return hashMap;
+  }
+
+  protected HashMap<String, BigDecimal> getVolumeData(JSONObject jsonObject) throws ParseException {
+    HashMap<String, BigDecimal> hashMap = new LinkedHashMap<>();
+
+    JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("quotes");
+
+    for (int i = 0; i < jsonArray.length(); i++) {
+      JSONObject obj = jsonArray.getJSONObject(i);
+
+      JSONArray jsonArray1 = obj.getJSONArray("quote");
+      JSONObject object = jsonArray1.getJSONObject(0);
+      String timestamp = object.getString("timestamp");
+      BigDecimal totalMarketCap = object.getBigDecimal("totalVolume24H");
+      hashMap.put(timestampFormatConversion(timestamp), totalMarketCap);
+    }
 
     return hashMap;
+  }
+
+  protected String timestampFormatConversion(String before) throws ParseException {
+    String after = "";
+
+    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+    Date date = inputFormat.parse(before);
+
+    SimpleDateFormat outputFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa", Locale.ENGLISH);
+    after = outputFormat.format(date);
+
+    return after;
+  }
+
+  protected BigDecimal virtualCurrencyUnitConversion(String amount) throws IllegalAccessException {
+
+    amount = amount.replaceAll("$", "");
+    char unit = amount.charAt(amount.length() - 1);
+    BigDecimal date;
+    BigDecimal before = new BigDecimal(amount.substring(1, amount.length() - 1));
+
+    switch (unit) {
+      case 'T':
+        date = before.multiply(new BigDecimal(1000000000000.00));
+        break;
+      case 'B':
+        date = before.multiply(new BigDecimal(1000000000.00));
+        break;
+      default:
+        throw new IllegalAccessException(String.format("unexpected value for %s", unit));
+    }
+    System.out.println("Format after format conversion : " + date);
+    return date;
+  }
+
+  protected long getPreviousDay() {
+    Calendar calendar = Calendar.getInstance();
+
+    calendar.add(Calendar.DAY_OF_MONTH, -1);
+    calendar.set(Calendar.SECOND, 0);
+
+    long timestamp = calendar.getTimeInMillis() / 1000;
+
+    System.out.println("Previous Day Timestamp : " + timestamp);
+
+    return timestamp;
+  }
+
+  protected long getNextsDay() {
+    Calendar calendar = Calendar.getInstance();
+
+    calendar.add(Calendar.DAY_OF_MONTH, +1);
+
+    calendar.set(Calendar.HOUR, 0);
+    calendar.set(Calendar.MINUTE, 0);
+    calendar.set(Calendar.SECOND, 0);
+
+    long timestamp = calendar.getTimeInMillis() / 1000;
+
+    System.out.println("Next Day Timestamp : " + timestamp);
+
+    return timestamp;
+  }
+
+  protected HashMap<String, HashMap<String, BigDecimal>> getBitcoinDominanceData(
+      JSONObject jsonObject) throws ParseException {
+
+    HashMap<String, HashMap<String, BigDecimal>> actualData = new LinkedHashMap<>();
+
+    JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("quotes");
+
+    for (int i = 0; i < jsonArray.length(); i++) {
+      HashMap<String, BigDecimal> hashMap = new LinkedHashMap<>();
+      JSONObject obj = jsonArray.getJSONObject(i);
+      String timestamp = obj.getString("timestamp");
+      JSONArray jsonArray1 = obj.getJSONArray("quote");
+
+      for (int j = 0; j < jsonArray1.length(); j++) {
+
+        if (jsonArray1.getJSONObject(j).getString("name").equalsIgnoreCase("others")) {
+          hashMap.put("Others", jsonArray1.getJSONObject(j).getBigDecimal("marketCap"));
+        } else if (jsonArray1.getJSONObject(j).getString("name").equals("global")) {
+          hashMap.put("global", jsonArray1.getJSONObject(j).getBigDecimal("marketCap"));
+        } else {
+          hashMap.put(
+              jsonArray1.getJSONObject(j).getString("symbol"),
+              jsonArray1.getJSONObject(j).getBigDecimal("marketCap"));
+        }
+      }
+      actualData.put(timestampFormatConversion(timestamp), hashMap);
+    }
+    return actualData;
   }
 }

@@ -41,6 +41,5 @@ public class LocaleCSVParser {
         e.printStackTrace();
       }
     }
-    System.out.println(localeMap);
   }
 }

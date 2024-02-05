@@ -50,13 +50,34 @@ Feature: Assessment for Senior QA Office
     Then the Browser is opening "https://yogapetz-prelaunch-website.vercel.app/mission" url on Google Chrome
     When the user quit app
 
-  @AC7.11
-  Scenario: Verify that the 1D icon appears the same as the response
+  @AC7.11.1
+  Scenario: Verify Market cap the 1D icon appears the same as the response
     Given the user open "https://coinmarketcap.com/" url on Google Chrome
     Then the user able to see Coinmarketcap screen
     When the user click Fear and Greed Index chat on Coinmarketcap screen
     Then the user able to see Global Live Cryptocurrency Charts screen
+    When the user click Market cap 1d button on Global Live Cryptocurrency Charts screen
+    Then the user verify Market cap the 1D icon appears the same as the response
+    When the user quit app
 
+  @AC7.11.2
+  Scenario: Verify Market cap the 1D icon appears the same as the response
+    Given the user open "https://coinmarketcap.com/" url on Google Chrome
+    Then the user able to see Coinmarketcap screen
+    When the user click Fear and Greed Index chat on Coinmarketcap screen
+    Then the user able to see Global Live Cryptocurrency Charts screen
+    When the user click Volume 1d button on Global Live Cryptocurrency Charts screen
+    Then the user verify Volume the 1D icon appears the same as the response
+    When the user quit app
+
+  @AC7.11.3
+  Scenario: Verify Bitcoin dominance the 1D icon appears the same as the response
+    Given the user open "https://coinmarketcap.com/" url on Google Chrome
+    Then the user able to see Coinmarketcap screen
+    When the user click Fear and Greed Index chat on Coinmarketcap screen
+    Then the user able to see Global Live Cryptocurrency Charts screen
+    When the user click Bitcoin dominance 1d button on Global Live Cryptocurrency Charts screen
+    Then the user verify Bitcoin dominance the 1D icon appears the same as the response
     When the user quit app
 
 

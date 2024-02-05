@@ -11,6 +11,6 @@ import org.junit.runner.RunWith;
       "html:target/cucumber-report/",
       "json:target/cucumber-report/cucumber.json"
     },
-    tags = "@AC7.13",
+//    tags = "@AC7.11.3",
     features = {"src/test/resources/Feature"})
 public class RunnerClass {}
