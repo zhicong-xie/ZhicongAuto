@@ -35,7 +35,6 @@ public class ChromeFlow extends BaseFlow {
 
   public void quitApp() {
     webDriver.quit();
-    webDriver = null;
   }
 
   public void maximizeWindow() {

@@ -1,11 +1,11 @@
-Feature: Assessment for Senior QA Office
+Feature: Web auto testing
 
   @AC7.5
-  Scenario: scroll down to the bottom on Cryptocurrencies section, test whether the of currencies per page is met the requirement 100
+  Scenario: scroll down to the bottom on Cryptocurrencies section get currency list
     Given the user open "https://coinmarketcap.com/" url on Google Chrome
     Then the user able to see Coinmarketcap screen
     And the user swipe to down get currency list size is 100 on Coinmarketcap screen
-    When the user quit app
+#    When the user quit app
 
   @AC7.6
   Scenario: select LOOM currency and direct currency details screen
@@ -15,7 +15,7 @@ Feature: Assessment for Senior QA Office
     And the user input "LOOM" in Search input bar on Coinmarketcap screen
     And the user select first search result on Coinmarketcap screen
     Then the user able to see Coinmarketcap currency details screen
-    When the user quit app
+#    When the user quit app
 
   @AC7.7
   Scenario: check Binance Exchange Proportion
@@ -26,7 +26,7 @@ Feature: Assessment for Senior QA Office
     When the user select "Binance" spot exchange on Top Cryptocurrency Spot Exchanges screen
     Then the user able to see Binance Spot Exchanges details screen
     And the user check Binance Exchange Proportion on Binance Spot Exchanges details screen
-    When the user quit app
+#    When the user quit app
 
   @AC7.8 @AC7.9 @AC7.10
   Scenario: select MetaMask on Supported wallets
@@ -48,7 +48,7 @@ Feature: Assessment for Senior QA Office
     When the user switch to first window
     Then the user able to see Yogapetz screen
     Then the Browser is opening "https://yogapetz-prelaunch-website.vercel.app/mission" url on Google Chrome
-    When the user quit app
+#    When the user quit app
 
   @AC7.11.1
   Scenario: Verify Market cap the 1D icon appears the same as the response
@@ -58,7 +58,7 @@ Feature: Assessment for Senior QA Office
     Then the user able to see Global Live Cryptocurrency Charts screen
     When the user click Market cap 1d button on Global Live Cryptocurrency Charts screen
     Then the user verify Market cap the 1D icon appears the same as the response
-    When the user quit app
+#    When the user quit app
 
   @AC7.11.2
   Scenario: Verify Market cap the 1D icon appears the same as the response
@@ -68,7 +68,7 @@ Feature: Assessment for Senior QA Office
     Then the user able to see Global Live Cryptocurrency Charts screen
     When the user click Volume 1d button on Global Live Cryptocurrency Charts screen
     Then the user verify Volume the 1D icon appears the same as the response
-    When the user quit app
+#    When the user quit app
 
   @AC7.11.3
   Scenario: Verify Bitcoin dominance the 1D icon appears the same as the response
@@ -78,8 +78,7 @@ Feature: Assessment for Senior QA Office
     Then the user able to see Global Live Cryptocurrency Charts screen
     When the user click Bitcoin dominance 1d button on Global Live Cryptocurrency Charts screen
     Then the user verify Bitcoin dominance the 1D icon appears the same as the response
-    When the user quit app
-
+#    When the user quit app
 
   @AC7.12
   Scenario: Check About LOOM NetWork copy
@@ -90,7 +89,7 @@ Feature: Assessment for Senior QA Office
     And the user select first search result on Coinmarketcap screen
     Then the user able to see Coinmarketcap currency details screen
     And the user able to see About LOOM NetWork copy on Coinmarketcap currency details screen
-    When the user quit app
+#    When the user quit app
 
   @AC7.13
   Scenario: Check watchlist functionality

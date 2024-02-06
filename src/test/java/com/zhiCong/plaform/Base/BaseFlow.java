@@ -99,12 +99,12 @@ public class BaseFlow {
   protected void swipeToBottom() {
     JavascriptExecutor js = (JavascriptExecutor) webDriver;
     Dimension windowSize = webDriver.manage().window().getSize();
-    int num = windowSize.height * 3 / 4;
+    int height = windowSize.height*3/2;
     int pageHeight = ((Long) js.executeScript("return document.body.scrollHeight")).intValue();
 
     while (true) {
       int currentPosition = ((Long) js.executeScript("return window.pageYOffset")).intValue();
-      if (currentPosition >= pageHeight - num) {
+      if (currentPosition >= pageHeight - height) {
         System.out.println("The page has slid to the bottom");
         break;
       } else {
