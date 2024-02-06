@@ -1,7 +1,6 @@
 package com.zhiCong.Plaform.Project.Step.Coinmarketcap;
 
 import com.zhiCong.Plaform.Project.Flow.Coinmarketcap.CryptocurrenciesFlow;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
@@ -12,18 +11,6 @@ public class CryptocurrenciesStep {
 
   public CryptocurrenciesStep() {
     cryptocurrenciesFlow = new CryptocurrenciesFlow();
-  }
-
-  @Given("^the user open \"([^\"]*)\" url on Google Chrome$")
-  public void openUrlOnGoogleChrome(String url) {
-    cryptocurrenciesFlow.openUrlOnGoogleChrome(url);
-  }
-
-  @Then("^the Browser is opening \"([^\"]*)\" url on Google Chrome$")
-  public void isBrowserOpenUrl(String expected) {
-    String msg = String.format("The Browser is not opening this %s url", expected);
-    String actual = cryptocurrenciesFlow.getBrowserOpenUrl();
-    Assert.assertEquals(msg, expected, actual);
   }
 
   @Then("^the user able to see Coinmarketcap screen$")
@@ -42,7 +29,8 @@ public class CryptocurrenciesStep {
     Assert.assertEquals(msg, expected, actual);
   }
 
-  @When("^the user click (Back to top button|Search bar|Exchange button|Fear and Greed Index chat) on Coinmarketcap screen$")
+  @When(
+      "^the user click (Back to top button|Search bar|Exchange button|Fear and Greed Index chat) on Coinmarketcap screen$")
   public void clickButton(String btnName) throws IllegalAccessException {
     switch (btnName) {
       case "Back to top button":
@@ -67,16 +55,6 @@ public class CryptocurrenciesStep {
     cryptocurrenciesFlow.selectFirstSearchResult();
   }
 
-  @When("^the user quit app$")
-  public void quitApp() {
-    cryptocurrenciesFlow.quitApp();
-  }
-
-  @When("^the user Maximize window$")
-  public void maximizeWindow() {
-    cryptocurrenciesFlow.maximizeWindow();
-  }
-
   @When("^the user input \"([^\"]*)\" in Search input bar on Coinmarketcap screen$")
   public void inputSearchInputBar(String data) {
     cryptocurrenciesFlow.inputSearchInputBar(data);
@@ -94,5 +72,4 @@ public class CryptocurrenciesStep {
   public void selectSpotExchange(String spotExchangeName) {
     cryptocurrenciesFlow.selectSpotExchange(spotExchangeName);
   }
-
 }

@@ -7,7 +7,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -99,11 +98,13 @@ public class BaseFlow {
 
   protected void swipeToBottom() {
     JavascriptExecutor js = (JavascriptExecutor) webDriver;
+    Dimension windowSize = webDriver.manage().window().getSize();
+    int num = windowSize.height * 3 / 4;
     int pageHeight = ((Long) js.executeScript("return document.body.scrollHeight")).intValue();
 
     while (true) {
       int currentPosition = ((Long) js.executeScript("return window.pageYOffset")).intValue();
-      if (currentPosition >= pageHeight - 800) {
+      if (currentPosition >= pageHeight - num) {
         System.out.println("The page has slid to the bottom");
         break;
       } else {

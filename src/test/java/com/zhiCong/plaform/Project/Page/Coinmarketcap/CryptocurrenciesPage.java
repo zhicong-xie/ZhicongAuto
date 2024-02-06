@@ -4,9 +4,7 @@ import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 
 public class CryptocurrenciesPage {
@@ -34,7 +32,7 @@ public class CryptocurrenciesPage {
   @FindBy(xpath = "//div[@class = 'sc-e20acb0c-1 fWcxPm']")
   public WebElement searchBar;
 
-  @FindBy(xpath = "//div[@class = 'sc-8829bc3d-6 eHPaKU']/input")
+  @FindBy(xpath = "//input[@class = 'sc-c85aff1f-3 kqecWE desktop-input']")
   public WebElement searchInputBar;
 
   @FindBy(xpath = "//span[@class = 'sc-f70bb44c-0 ipezdW coin-name']")

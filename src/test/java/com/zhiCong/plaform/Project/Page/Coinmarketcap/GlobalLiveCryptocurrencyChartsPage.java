@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 
 public class GlobalLiveCryptocurrencyChartsPage {
@@ -36,36 +35,54 @@ public class GlobalLiveCryptocurrencyChartsPage {
   @FindBy(xpath = "//div[@id = 'market-cap']//*[@class = 'highcharts-root']")
   public WebElement marketCapChat;
 
-  @FindBy(xpath = "//div[@id = 'market-cap']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),'/')]")
+  @FindBy(
+      xpath =
+          "//div[@id = 'market-cap']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),'/')]")
   public WebElement marketCapOneDayTooltipDate;
 
-  @FindBy(xpath = "//div[@id = 'market-cap']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),':00')]")
+  @FindBy(
+      xpath =
+          "//div[@id = 'market-cap']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),':00')]")
   public WebElement marketCapOneDayTooltipTime;
 
-  @FindBy(xpath = "//div[@id = 'market-cap']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),'$')]")
+  @FindBy(
+      xpath =
+          "//div[@id = 'market-cap']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),'$')]")
   public WebElement marketCapOneDayTooltipAmount;
 
   @FindBy(xpath = "//div[@id = 'volume-24h']//*[@class = 'highcharts-root']")
   public WebElement volumeChat;
 
-  @FindBy(xpath = "//div[@id = 'volume-24h']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),'/')]")
+  @FindBy(
+      xpath =
+          "//div[@id = 'volume-24h']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),'/')]")
   public WebElement volumeOneDayTooltipDate;
 
-  @FindBy(xpath = "//div[@id = 'volume-24h']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),':00')]")
+  @FindBy(
+      xpath =
+          "//div[@id = 'volume-24h']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),':00')]")
   public WebElement volumeOneDayTooltipTime;
 
-  @FindBy(xpath = "//div[@id = 'volume-24h']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),'$')]")
+  @FindBy(
+      xpath =
+          "//div[@id = 'volume-24h']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span[contains(text(),'$')]")
   public WebElement volumeOneDayTooltipAmount;
 
   @FindBy(xpath = "//div[@id = 'bitcoin-dominance']//*[@class = 'highcharts-root']")
   public WebElement bitcoinDominanceChat;
 
-  @FindBy(xpath = "//div[@id = 'bitcoin-dominance']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//div[contains(text(),'/')]")
+  @FindBy(
+      xpath =
+          "//div[@id = 'bitcoin-dominance']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//div[contains(text(),'/')]")
   public WebElement bitcoinDominanceOneDayTooltipDate;
 
-  @FindBy(xpath = "//div[@id = 'bitcoin-dominance']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//div[contains(text(),':00')]")
+  @FindBy(
+      xpath =
+          "//div[@id = 'bitcoin-dominance']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//div[contains(text(),':00')]")
   public WebElement bitcoinDominanceOneDayTooltipTime;
 
-  @FindBy(xpath = "//div[@id = 'bitcoin-dominance']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span")
+  @FindBy(
+      xpath =
+          "//div[@id = 'bitcoin-dominance']//div[@class = 'highcharts-label highcharts-tooltip highcharts-color-undefined']//span")
   public List<WebElement> bitcoinDominanceOneDayTooltipDataList;
 }

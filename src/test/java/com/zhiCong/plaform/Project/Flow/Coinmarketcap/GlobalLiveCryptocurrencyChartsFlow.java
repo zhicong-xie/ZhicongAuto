@@ -5,15 +5,11 @@ import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
 import com.zhiCong.Plaform.Base.LocaleCSVParser;
 import com.zhiCong.Plaform.Project.Page.Coinmarketcap.GlobalLiveCryptocurrencyChartsPage;
 import org.openqa.selenium.*;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.interactions.Actions;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class GlobalLiveCryptocurrencyChartsFlow extends BaseFlow {
@@ -221,16 +217,17 @@ public class GlobalLiveCryptocurrencyChartsFlow extends BaseFlow {
       if (expectedCurrencyName.equalsIgnoreCase("others")) {
         int i = 0;
         BigDecimal othersCurrency = new BigDecimal(0);
-        for (String keys : actualDate.keySet()){
+        for (String keys : actualDate.keySet()) {
 
-          if (i>=5){
-            if (!(keys.equalsIgnoreCase("global"))){
+          if (i >= 5) {
+            if (!(keys.equalsIgnoreCase("global"))) {
               othersCurrency = othersCurrency.add(actualDate.get(keys));
             }
           }
           i++;
         }
-        actualCurrencyPercentage = (othersCurrency.multiply(new BigDecimal(100)).divide(actualDate.get("global"),2));
+        actualCurrencyPercentage =
+            (othersCurrency.multiply(new BigDecimal(100)).divide(actualDate.get("global"), 2));
 
       } else {
         actualCurrencyPercentage =
@@ -244,9 +241,12 @@ public class GlobalLiveCryptocurrencyChartsFlow extends BaseFlow {
           expectedCurrencyPercentage.subtract(actualCurrencyPercentage).abs();
 
       System.out.println(
-              String.format(
-                      "%s expect currency percentage is %s percentage; actual percentage is %s percentage;\nThe percentage difference between the two is %s \n",
-                      expectedCurrencyName, expectedCurrencyPercentage,actualCurrencyPercentage,differenceCurrencyPercentage));
+          String.format(
+              "%s expect currency percentage is %s percentage; actual percentage is %s percentage;\nThe percentage difference between the two is %s \n",
+              expectedCurrencyName,
+              expectedCurrencyPercentage,
+              actualCurrencyPercentage,
+              differenceCurrencyPercentage));
 
       if (differenceCurrencyPercentage.compareTo(new BigDecimal("0.5")) > 0) {
         isCurrencyPercentageCorrect = false;
@@ -264,7 +264,8 @@ public class GlobalLiveCryptocurrencyChartsFlow extends BaseFlow {
 
     BigDecimal differenceTotalAmount = totalCurrencyAmount.subtract(actualDate.get("global")).abs();
 
-    System.out.println("The difference between the two total amount values is " + differenceTotalAmount);
+    System.out.println(
+        "The difference between the two total amount values is " + differenceTotalAmount);
 
     if (differenceTotalAmount.compareTo(new BigDecimal("100")) > 0) {
       isTotalCurrencyAmountCorrect = false;

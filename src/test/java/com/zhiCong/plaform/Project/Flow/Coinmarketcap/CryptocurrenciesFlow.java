@@ -5,7 +5,6 @@ import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
 import com.zhiCong.Plaform.Project.Page.Coinmarketcap.CryptocurrenciesPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.*;
 
 public class CryptocurrenciesFlow extends BaseFlow {
@@ -16,15 +15,6 @@ public class CryptocurrenciesFlow extends BaseFlow {
   public CryptocurrenciesFlow() {
     cryptocurrenciesPage = new CryptocurrenciesPage();
     webDriver = WebDriverConfig.getDriver();
-  }
-
-  public void openUrlOnGoogleChrome(String url) {
-    System.out.println(String.format("Opening %s link on Google Chrome", url));
-    webDriver.get(url);
-  }
-
-  public String getBrowserOpenUrl() {
-    return webDriver.getCurrentUrl();
   }
 
   public boolean isCoinmarketcapScreenDisplayed() {
@@ -53,14 +43,6 @@ public class CryptocurrenciesFlow extends BaseFlow {
 
   public void selectFirstSearchResult() {
     waitForElement(cryptocurrenciesPage.searchResultList).click();
-  }
-
-  public void quitApp() {
-    webDriver.quit();
-  }
-
-  public void maximizeWindow() {
-    webDriver.manage().window().maximize();
   }
 
   public void inputSearchInputBar(String data) {

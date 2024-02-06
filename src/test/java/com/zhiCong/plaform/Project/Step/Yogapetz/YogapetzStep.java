@@ -39,9 +39,4 @@ public class YogapetzStep {
   public void openUrlOnGoogleChrome(String button) {
     yogapetzFlow.clickButtonByText(button);
   }
-
-  @When("^the user switch to (last|first) window$")
-  public void userSwitchToWindow(String item) {
-    yogapetzFlow.userSwitchToWindow(item);
-  }
 }

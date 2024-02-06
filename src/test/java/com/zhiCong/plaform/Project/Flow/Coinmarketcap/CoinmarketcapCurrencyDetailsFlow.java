@@ -9,43 +9,40 @@ import org.openqa.selenium.WebElement;
 
 public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
 
-    private CoinmarketcapCurrencyDetailsPage coinmarketcapCurrencyDetailsPage;
-    private WebDriver webDriver;
+  private CoinmarketcapCurrencyDetailsPage coinmarketcapCurrencyDetailsPage;
+  private WebDriver webDriver;
 
-    public CoinmarketcapCurrencyDetailsFlow() {
-        coinmarketcapCurrencyDetailsPage = new CoinmarketcapCurrencyDetailsPage();
-        webDriver = WebDriverConfig.getDriver();
+  public CoinmarketcapCurrencyDetailsFlow() {
+    coinmarketcapCurrencyDetailsPage = new CoinmarketcapCurrencyDetailsPage();
+    webDriver = WebDriverConfig.getDriver();
+  }
+
+  public boolean isCurrencyDetailsScreenDisplayed() {
+    return checkForElement(coinmarketcapCurrencyDetailsPage.coinmarketcapCurrencyDetailsTitle);
+  }
+
+  public boolean checkLoomNetWorkCopy() {
+    swipeToDownFindElement(coinmarketcapCurrencyDetailsPage.loomNetWorkTitle);
+    String loomNetworkTitle =
+        waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkTitle).getText().trim();
+    String loomNetWorkDescription = "";
+    for (WebElement webElement : coinmarketcapCurrencyDetailsPage.loomNetWorkDescriptionList) {
+      loomNetWorkDescription = loomNetWorkDescription + webElement.getText().trim();
     }
+    System.out.println("actual copy title" + loomNetworkTitle);
+    System.out.println("actual copy description" + loomNetWorkDescription);
 
+    return LocaleCSVParser.getLocaleValue("About_LOOM_Network_title").equals(loomNetworkTitle)
+        && LocaleCSVParser.getLocaleValue("About_LOOM_Network_description")
+            .equals(loomNetWorkDescription);
+  }
 
-    public boolean isCurrencyDetailsScreenDisplayed() {
-        return checkForElement(coinmarketcapCurrencyDetailsPage.coinmarketcapCurrencyDetailsTitle);
-    }
+  public void clickFollowButton() {
+    waitForElement(coinmarketcapCurrencyDetailsPage.followButton).click();
+    waitForSeconds(8);
+  }
 
-    public boolean checkLoomNetWorkCopy() {
-        swipeToDownFindElement(coinmarketcapCurrencyDetailsPage.loomNetWorkTitle);
-        String loomNetworkTitle =
-                waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkTitle).getText().trim();
-        String loomNetWorkDescription = "";
-        for (WebElement webElement : coinmarketcapCurrencyDetailsPage.loomNetWorkDescriptionList) {
-            loomNetWorkDescription = loomNetWorkDescription + webElement.getText().trim();
-        }
-        System.out.println("actual copy title" + loomNetworkTitle);
-        System.out.println("actual copy description" + loomNetWorkDescription);
-
-        return LocaleCSVParser.getLocaleValue("About_LOOM_Network_title").equals(loomNetworkTitle)
-                && LocaleCSVParser.getLocaleValue("About_LOOM_Network_description")
-                .equals(loomNetWorkDescription);
-    }
-
-
-    public void clickFollowButton(){
-        waitForElement(coinmarketcapCurrencyDetailsPage.followButton).click();
-        waitForSeconds(8);
-    }
-
-    public void clickWatchlistButton(){
-        waitForElement(coinmarketcapCurrencyDetailsPage.watchlistButton).click();
-    }
-
+  public void clickWatchlistButton() {
+    waitForElement(coinmarketcapCurrencyDetailsPage.watchlistButton).click();
+  }
 }
