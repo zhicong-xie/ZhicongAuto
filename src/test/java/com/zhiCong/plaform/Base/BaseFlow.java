@@ -91,9 +91,11 @@ public class BaseFlow {
     ((JavascriptExecutor) webDriver).executeScript(String.format("window.scrollBy(0, %d);", pixel));
   }
 
-  protected void swipeToDownFindElement(WebElement webElement) {
+  protected WebElement swipeToDownFindElementByJs(WebElement webElement) {
     ((JavascriptExecutor) webDriver)
         .executeScript("arguments[0].scrollIntoView(false);", webElement);
+    WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
+    return w.until(ExpectedConditions.visibilityOf(webElement));
   }
 
   protected void swipeToBottom() {
@@ -108,6 +110,17 @@ public class BaseFlow {
         System.out.println("The page has slid to the bottom");
         break;
       } else {
+        swipeToDown();
+        waitForSeconds(2);
+      }
+    }
+  }
+
+  protected void swipeDownToFindElement(WebElement webElement) {
+    for (int i =0; i<10;i++){
+      if (checkForElement(webElement,3)){
+        break;
+      }else {
         swipeToDown();
         waitForSeconds(2);
       }

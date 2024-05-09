@@ -72,4 +72,9 @@ public class CryptocurrenciesStep {
   public void selectSpotExchange(String spotExchangeName) {
     cryptocurrenciesFlow.selectSpotExchange(spotExchangeName);
   }
+
+  @When("^the user click Accept Cookies & Continue on Coinmarketcap screen if exists$")
+  public void clickAcceptCookieButton() {
+    cryptocurrenciesFlow.clickAcceptCookieButton();
+  }
 }

@@ -21,11 +21,8 @@ public class WebDriverConfig {
   private WebDriverConfig() {
     System.setProperty(
         "webdriver.chrome.driver",
-        "/Users/automatiautomationon/Downloads/chromedriver-mac-x64/chromedriver");
-    ChromeOptions chromeOptions = new ChromeOptions();
-    chromeOptions.addArguments(
-        "--user-data-dir=/Users/automatiautomationon/Chrome profile/Profile 1");
-    webDriver = new ChromeDriver(chromeOptions);
+            "/Users/automatiautomationon/Downloads/chromedriver-mac-x64 2/chromedriver");
+    webDriver = new ChromeDriver();
   }
 
   public static WebDriver getDriver() {

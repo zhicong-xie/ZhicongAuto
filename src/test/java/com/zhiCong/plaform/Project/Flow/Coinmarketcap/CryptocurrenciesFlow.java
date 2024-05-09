@@ -42,6 +42,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public void selectFirstSearchResult() {
+    waitForSeconds(5);
     waitForElement(cryptocurrenciesPage.searchResultList).click();
   }
 
@@ -63,5 +64,11 @@ public class CryptocurrenciesFlow extends BaseFlow {
 
   public void clickFearAndGreedIndexChat() {
     waitForElement(cryptocurrenciesPage.fearAndGreedIndexChat).click();
+  }
+
+  public void clickAcceptCookieButton(){
+    if (checkForElement(cryptocurrenciesPage.acceptCookieButton,30)){
+      cryptocurrenciesPage.acceptCookieButton.click();
+    }
   }
 }

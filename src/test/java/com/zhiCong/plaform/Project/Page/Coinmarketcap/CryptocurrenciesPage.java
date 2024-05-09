@@ -23,7 +23,7 @@ public class CryptocurrenciesPage {
   @FindBy(id = "drop-anchor")
   public WebElement ReadMoreLink;
 
-  @FindBy(xpath = "//div[@class = 'sc-adbfcfff-3 dDrhas']")
+  @FindBy(xpath = "//div[@class = 'sc-aef7b723-0 sc-655e743f-2 csqLjn  hide-ranking-number']/p")
   public List<WebElement> currencyNameList;
 
   @FindBy(xpath = "//div[@class = 'sc-4ce79553-0 hHIalA visible']")
@@ -32,7 +32,7 @@ public class CryptocurrenciesPage {
   @FindBy(xpath = "//div[@class = 'sc-e20acb0c-1 fWcxPm']")
   public WebElement searchBar;
 
-  @FindBy(xpath = "//input[@class = 'sc-c85aff1f-3 kqecWE desktop-input']")
+  @FindBy(xpath = "//input[@class = 'sc-d565189d-3 kKevNe desktop-input']")
   public WebElement searchInputBar;
 
   @FindBy(xpath = "//span[@class = 'sc-f70bb44c-0 ipezdW coin-name']")
@@ -46,4 +46,7 @@ public class CryptocurrenciesPage {
 
   @FindBy(xpath = "//div[@class ='sc-f70bb44c-0 jVLcFz']")
   public WebElement fearAndGreedIndexChat;
+
+  @FindBy(id = "onetrust-accept-btn-handler")
+  public WebElement acceptCookieButton;
 }

@@ -1,6 +1,7 @@
 package com.zhiCong.Plaform.Project.Step.Coinmarketcap;
 
 import com.zhiCong.Plaform.Project.Flow.Coinmarketcap.CoinmarketcapCurrencyDetailsFlow;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
@@ -41,5 +42,42 @@ public class CoinmarketcapCurrencyDetailsStep {
       default:
         throw new IllegalAccessException(String.format("unexpected value for %s", btn));
     }
+  }
+
+  @When("^the user click (Chart|Markets|About) button on Coinmarketcap currency details screen top banner$")
+  public void clickTopButton(String btnName) throws IllegalAccessException {
+    switch (btnName) {
+      case "Chart":
+        coinmarketcapCurrencyDetailsFlow.clickChartButton();
+        break;
+      case "Markets":
+        coinmarketcapCurrencyDetailsFlow.clickMarketsButton();
+        break;
+      case "About":
+        coinmarketcapCurrencyDetailsFlow.clicAboutButton();
+        break;
+      default:
+        throw new IllegalAccessException(String.format("unexpected value for %s", btnName));
+    }
+  }
+
+  @When(
+      "^the user select \"([^\"]*)\" rows on Coinmarketcap currency details screen rows dropDown$")
+  public void selectRows(String item) throws IllegalAccessException {
+    coinmarketcapCurrencyDetailsFlow.selectShowRows(item);
+  }
+
+  @When("^the user select Metamask icon on Coinmarketcap currency details screen support wallets view$")
+  public void selectMetamaskIcon() {
+    coinmarketcapCurrencyDetailsFlow.selectMetamaskIcon();
+  }
+
+  @Then(
+      "^the user able to see \"([^\"]*)\" volume percentage is correct on Coinmarketcap currency details screen$")
+  public void isVolumePercentageCorrect(String item) {
+    boolean expected = true;
+    String msg = String.format("the user can see %s volume percentage is not correct", item);
+    boolean actual = coinmarketcapCurrencyDetailsFlow.isVolumePercentageCorrect(item);
+    Assert.assertEquals(msg, expected, actual);
   }
 }
