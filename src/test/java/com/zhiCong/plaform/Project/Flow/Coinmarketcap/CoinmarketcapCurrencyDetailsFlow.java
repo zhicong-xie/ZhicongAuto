@@ -7,6 +7,7 @@ import com.zhiCong.Plaform.Project.Page.Coinmarketcap.CoinmarketcapCurrencyDetai
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
@@ -52,7 +53,7 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
   }
 
   public void clickChartButton() {
-    waitForElement(coinmarketcapCurrencyDetailsPage.marketsButton).click();
+    waitForElement(coinmarketcapCurrencyDetailsPage.chartButton).click();
     // 等待页面刷新
     waitForSeconds(3);
   }
@@ -63,16 +64,15 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
     waitForSeconds(3);
   }
 
-  public void clicAboutButton() {
-    waitForElement(coinmarketcapCurrencyDetailsPage.marketsButton).click();
+  public void clickAboutButton() {
+    waitForElement(coinmarketcapCurrencyDetailsPage.aboutButton).click();
     // 等待页面刷新
     waitForSeconds(3);
   }
 
-  public void selectMetamaskIcon(){
+  public void selectMetamaskIcon() {
     waitForElement(coinmarketcapCurrencyDetailsPage.metamaskIcon).click();
   }
-
 
   public void selectShowRows(String item) throws IllegalAccessException {
     // 滑动到rowsDropDown 并点击
@@ -158,5 +158,17 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
     }
 
     return true;
+  }
+
+  public boolean verifyOneDayChartAlignResponse() throws IOException {
+    HashMap<String, HashMap<BigDecimal, BigDecimal>> expectedData =
+        getOneDayLoomPriceData(
+            getApiResponse(
+                "https://api.coinmarketcap.com/data-api/v3/cryptocurrency/detail/chart?id=2588&range=1D",
+                "GET"));
+
+
+
+    return false;
   }
 }

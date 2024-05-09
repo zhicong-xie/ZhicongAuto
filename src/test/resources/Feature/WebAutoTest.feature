@@ -6,7 +6,7 @@ Feature: Web auto testing
     Then the user able to see Coinmarketcap screen
     When the user click Accept Cookies & Continue on Coinmarketcap screen if exists
     Then the user swipe to down get currency list size is 100 on Coinmarketcap screen
-#    When the user quit app
+    #TODO 需要返回页面最顶部按钮！
 
   @AC7.6
   Scenario: select LOOM currency and direct currency details screen
@@ -19,13 +19,12 @@ Feature: Web auto testing
     Then the user able to see Coinmarketcap currency details screen
 #    When the user quit app
 
-  @AC7.6
   @AC7.7
   Scenario: check Binance Exchange Proportion
     Given the user able to see Coinmarketcap currency details screen
     When the user click Markets button on Coinmarketcap currency details screen top banner
-#    And the user select "100" rows on Coinmarketcap currency details screen rows dropDown
-#    Then the user able to see "Binance" volume percentage is correct on Coinmarketcap currency details screen
+    And the user select "100" rows on Coinmarketcap currency details screen rows dropDown
+    Then the user able to see "Binance" volume percentage is correct on Coinmarketcap currency details screen
 
   @AC7.8 @AC7.9 @AC7.10
   Scenario: select MetaMask on Supported wallets
@@ -36,19 +35,22 @@ Feature: Web auto testing
     When the user switch to first window
     Then the user able to see Coinmarketcap currency details screen
     And the Browser is opening "https://coinmarketcap.com/currencies/loom-network/#Markets" url on Google Chrome
-#    When the user quit app
 
-  @AC7.11
+  @AC7.6
+#  @AC7.11
   Scenario: Verify Loom Network 1D icon appears the same as the response
     Given the user able to see Coinmarketcap currency details screen
-    When the user click Chart button on Coinmarketcap currency details screen top banner
+#    When the user click Chart button on Coinmarketcap currency details screen top banner
 #TODO
 
-    Then the user able to see Coinmarketcap screen
-    When the user click Fear and Greed Index chat on Coinmarketcap screen
-    Then the user able to see Global Live Cryptocurrency Charts screen
-    When the user click Market cap 1d button on Global Live Cryptocurrency Charts screen
-    Then the user verify Market cap the 1D icon appears the same as the response
+    Then the user verify 1D price chart data is align with response on Coinmarketcap currency details screen
+
+
+#    Then the user able to see Coinmarketcap screen
+#    When the user click Fear and Greed Index chat on Coinmarketcap screen
+#    Then the user able to see Global Live Cryptocurrency Charts screen
+#    When the user click Market cap 1d button on Global Live Cryptocurrency Charts screen
+#    Then the user verify Market cap the 1D icon appears the same as the response
 #    When the user quit app
 
   @AC7.12

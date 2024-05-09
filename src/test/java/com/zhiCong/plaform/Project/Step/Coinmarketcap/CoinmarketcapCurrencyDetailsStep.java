@@ -2,9 +2,12 @@ package com.zhiCong.Plaform.Project.Step.Coinmarketcap;
 
 import com.zhiCong.Plaform.Project.Flow.Coinmarketcap.CoinmarketcapCurrencyDetailsFlow;
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+
+import java.io.IOException;
 
 public class CoinmarketcapCurrencyDetailsStep {
 
@@ -54,7 +57,7 @@ public class CoinmarketcapCurrencyDetailsStep {
         coinmarketcapCurrencyDetailsFlow.clickMarketsButton();
         break;
       case "About":
-        coinmarketcapCurrencyDetailsFlow.clicAboutButton();
+        coinmarketcapCurrencyDetailsFlow.clickAboutButton();
         break;
       default:
         throw new IllegalAccessException(String.format("unexpected value for %s", btnName));
@@ -78,6 +81,14 @@ public class CoinmarketcapCurrencyDetailsStep {
     boolean expected = true;
     String msg = String.format("the user can see %s volume percentage is not correct", item);
     boolean actual = coinmarketcapCurrencyDetailsFlow.isVolumePercentageCorrect(item);
+    Assert.assertEquals(msg, expected, actual);
+  }
+
+  @Then("^the user verify 1D price chart data is align with response on Coinmarketcap currency details screen$")
+  public void verifyOneDayChartAlignResponse() throws IOException {
+    boolean expected = true;
+    String msg = "1D price chart data is not align with response";
+    boolean actual = coinmarketcapCurrencyDetailsFlow.verifyOneDayChartAlignResponse();
     Assert.assertEquals(msg, expected, actual);
   }
 }

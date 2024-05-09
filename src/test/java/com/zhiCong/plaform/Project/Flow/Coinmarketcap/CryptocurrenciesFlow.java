@@ -67,6 +67,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public void clickAcceptCookieButton(){
+    waitForSeconds(5);
     if (checkForElement(cryptocurrenciesPage.acceptCookieButton,30)){
       cryptocurrenciesPage.acceptCookieButton.click();
     }

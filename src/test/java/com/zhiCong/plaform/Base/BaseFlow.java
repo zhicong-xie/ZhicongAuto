@@ -1,5 +1,6 @@
 package com.zhiCong.Plaform.Base;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
@@ -101,7 +103,7 @@ public class BaseFlow {
   protected void swipeToBottom() {
     JavascriptExecutor js = (JavascriptExecutor) webDriver;
     Dimension windowSize = webDriver.manage().window().getSize();
-    int height = windowSize.height*3/2;
+    int height = windowSize.height * 3 / 2;
     int pageHeight = ((Long) js.executeScript("return document.body.scrollHeight")).intValue();
 
     while (true) {
@@ -117,10 +119,10 @@ public class BaseFlow {
   }
 
   protected void swipeDownToFindElement(WebElement webElement) {
-    for (int i =0; i<10;i++){
-      if (checkForElement(webElement,3)){
+    for (int i = 0; i < 10; i++) {
+      if (checkForElement(webElement, 3)) {
         break;
-      }else {
+      } else {
         swipeToDown();
         waitForSeconds(2);
       }
@@ -185,12 +187,15 @@ public class BaseFlow {
 
     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
+    System.out.println(String.format("Trying to get the response of %s API ...", url));
+
     try {
       connection.setRequestMethod(requestMethod);
 
       int responseCode = connection.getResponseCode();
 
       if (responseCode == HttpURLConnection.HTTP_OK) {
+        System.out.println("Https Status Code is 200.");
         BufferedReader reader =
             new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
@@ -205,7 +210,7 @@ public class BaseFlow {
 
         jsonObject = new JSONObject(response.toString());
 
-        System.out.println("Api response: \n" + jsonObject);
+        System.out.println("API response : " + jsonObject);
 
       } else {
         System.err.println("error code" + responseCode);
@@ -283,6 +288,9 @@ public class BaseFlow {
       case 'B':
         date = before.multiply(new BigDecimal(1000000000.00));
         break;
+      case 'M':
+        date = before.multiply(new BigDecimal(1000000.00));
+        break;
       default:
         throw new IllegalAccessException(String.format("unexpected value for %s", unit));
     }
@@ -347,5 +355,27 @@ public class BaseFlow {
       actualData.put(timestampFormatConversion(timestamp), hashMap);
     }
     return actualData;
+  }
+
+  protected HashMap<String, HashMap<BigDecimal, BigDecimal>> getOneDayLoomPriceData(
+      JSONObject response) {
+
+    HashMap<String, HashMap<BigDecimal, BigDecimal>> oneDayLoomPriceData = new LinkedHashMap<>();
+
+    JSONObject object = response.getJSONObject("data").getJSONObject("points");
+
+    for (String key : object.keySet()) {
+      HashMap<BigDecimal, BigDecimal> data = new LinkedHashMap<>();
+      JSONArray jsonArray = object.getJSONObject(key).getJSONArray("v");
+
+      BigDecimal price = jsonArray.getBigDecimal(0).setScale(17, RoundingMode.HALF_UP);
+      BigDecimal vol = jsonArray.getBigDecimal(1).setScale(2, RoundingMode.HALF_UP);
+      data.put(price, vol);
+      oneDayLoomPriceData.put(key, data);
+    }
+
+    System.out.println("1D LOOM Expected Price Data : " + oneDayLoomPriceData);
+
+    return oneDayLoomPriceData;
   }
 }

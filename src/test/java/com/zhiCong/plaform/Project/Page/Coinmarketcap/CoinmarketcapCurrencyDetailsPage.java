@@ -75,4 +75,7 @@ public class CoinmarketcapCurrencyDetailsPage {
 
   @FindBy(xpath = "//span[@class = 'sc-f70bb44c-0 iQEJet sc-90c5a201-2 MXNho']")
   public WebElement invalidSequence;
+
+  @FindBy(xpath = "//span[@class = 'sc-f70bb44c-0 iQEJet sc-90c5a201-2 MXNho']")
+  public WebElement chartView;
 }
