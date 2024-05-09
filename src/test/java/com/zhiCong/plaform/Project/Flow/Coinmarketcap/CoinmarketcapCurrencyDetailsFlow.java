@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
@@ -156,18 +157,41 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
         return false;
       }
     }
-
     return true;
   }
 
   public boolean verifyOneDayChartAlignResponse() throws IOException {
+    //获取API response，并仅保留所需的数据
     HashMap<String, HashMap<BigDecimal, BigDecimal>> expectedData =
         getOneDayLoomPriceData(
             getApiResponse(
                 "https://api.coinmarketcap.com/data-api/v3/cryptocurrency/detail/chart?id=2588&range=1D",
                 "GET"));
 
+    //等待图标刷新
+    waitForSeconds(5);
 
+    //获取3次随机元素坐标
+    List<Integer> randomCoordinates = getRandomCoordinatesForElement(3,coinmarketcapCurrencyDetailsPage.chartView);
+
+    HashMap<String,HashMap<String,String>> actualData = new LinkedHashMap<>();
+
+
+    //获取随机三点的实际弹窗数据
+    for (Integer x : randomCoordinates){
+
+      mouseMovementForCoordinate(coinmarketcapCurrencyDetailsPage.chartView,x,0);
+      waitForSeconds(3);
+      HashMap<String,String> data = new HashMap<>();
+      String date = coinmarketcapCurrencyDetailsPage.chartPartialModelDate.getText().trim();
+      String time = coinmarketcapCurrencyDetailsPage.chartPartialModelTime.getText().trim();
+      String price = coinmarketcapCurrencyDetailsPage.chartPartialModelPrice.getText().trim();
+      String vol = coinmarketcapCurrencyDetailsPage.chartPartialModelVol.getText().trim();
+      data.put(price,vol);
+      actualData.put(date+" "+time,data);
+    }
+
+    System.out.println("Actual data : "+actualData);
 
     return false;
   }

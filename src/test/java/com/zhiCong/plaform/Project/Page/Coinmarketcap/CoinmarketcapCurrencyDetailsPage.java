@@ -76,6 +76,19 @@ public class CoinmarketcapCurrencyDetailsPage {
   @FindBy(xpath = "//span[@class = 'sc-f70bb44c-0 iQEJet sc-90c5a201-2 MXNho']")
   public WebElement invalidSequence;
 
-  @FindBy(xpath = "//span[@class = 'sc-f70bb44c-0 iQEJet sc-90c5a201-2 MXNho']")
+  @FindBy(xpath = "//div[@class = 'chart']/*[@class = 'tv-lightweight-charts']")
   public WebElement chartView;
+
+  @FindBy(xpath = "//div[@class = 'floating-tooltip']/div[1]//*[@class = 'primary']")
+  public WebElement chartPartialModelDate;
+
+  @FindBy(xpath = "//div[@class = 'floating-tooltip']/div[1]//*[@class = 'sub']")
+  public WebElement chartPartialModelTime;
+
+
+  @FindBy(xpath = "//div[@class = 'floating-tooltip']/div[2]//*[@class = 'number']")
+  public WebElement chartPartialModelPrice;
+
+  @FindBy(xpath = "//div[@class = 'floating-tooltip']/div[3]//*[@class = 'number']")
+  public WebElement chartPartialModelVol;
 }

@@ -149,6 +149,14 @@ public class BaseFlow {
     }
   }
 
+  protected void mouseMovementForCoordinate(WebElement webElement, Integer x, Integer y) {
+    Actions actions = new Actions(webDriver);
+    for (int i = 0; i < defaultNumOfSwipe; i++) {
+      actions.moveToElement(webElement, x, y).pause(2000).build().perform();
+      waitForSeconds(1);
+    }
+  }
+
   protected void mouseMovementWithOffset(WebElement webElement, int xOffset, int yOffset) {
     Actions actions = new Actions(webDriver);
     actions.moveToElement(webElement, xOffset, yOffset).perform();
@@ -377,5 +385,23 @@ public class BaseFlow {
     System.out.println("1D LOOM Expected Price Data : " + oneDayLoomPriceData);
 
     return oneDayLoomPriceData;
+  }
+
+  protected List<Integer> getRandomCoordinatesForElement(
+      Integer number, WebElement webElement) {
+    List<Integer> data = new LinkedList<>();
+
+    // 获取元素的尺寸
+    Dimension elementSize = webElement.getSize();
+    int width = elementSize.getWidth();
+
+    Random random = new Random();
+    for (int i = 0; i < number; i++) {
+      int randomNumber = random.nextInt(width + 1 -(width/2));
+      data.add(randomNumber);
+    }
+
+    System.out.println("Random Coordinates : " + data);
+    return data;
   }
 }
