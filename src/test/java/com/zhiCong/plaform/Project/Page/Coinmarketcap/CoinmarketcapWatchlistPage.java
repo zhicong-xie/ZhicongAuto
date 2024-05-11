@@ -20,6 +20,6 @@ public class CoinmarketcapWatchlistPage {
   @FindBy(xpath = "//h1[contains(text(),'Create Your Crypto Watchlist Today')]")
   public WebElement watchlistListTitle;
 
-  @FindBy(xpath = "//div[@class = 'sc-aef7b723-0 sc-1c5f2868-2 bhBHDD  hide-ranking-number']//p")
+  @FindBy(xpath = "//*[contains(@class, 'hide-ranking-number')]//p")
   public List<WebElement> watchlistListName;
 }

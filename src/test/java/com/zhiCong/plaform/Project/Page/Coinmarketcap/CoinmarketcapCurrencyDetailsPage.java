@@ -38,63 +38,66 @@ public class CoinmarketcapCurrencyDetailsPage {
   @FindBy(xpath = "//span[@data-title = 'About']")
   public WebElement aboutButton;
 
-  @FindBy(
-      xpath =
-          "//div[@class = 'sc-aef7b723-0 sc-df1620aa-1 jKiFcK']/div[@class = 'sc-aef7b723-0 sc-4465b840-0 ebFoZm']")
+  @FindBy(xpath = "//span[contains(text(),'Show rows')]/../div[1]")
   public WebElement rowsDropDown;
 
-  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 iQEJet icons flexStart showInDesktop']/img[2]")
+  @FindBy(xpath = "//div[contains(@class, 'showInDesktop')]//img[contains(@src, 'metamask')]")
   public WebElement metamaskIcon;
 
-  @FindBy(xpath = "//button[@class = 'sc-2861d03b-0 gOwguC dropdown-item'][4]")
+  @FindBy(xpath = "//button[text()= '10' and contains(@class, 'dropdown-item')]")
   public WebElement tenRows;
 
-  @FindBy(xpath = "//button[@class = 'sc-2861d03b-0 gOwguC dropdown-item'][3]")
+  @FindBy(xpath = "//button[text()= '20' and contains(@class, 'dropdown-item')]")
   public WebElement twentyRows;
 
-  @FindBy(xpath = "//button[@class = 'sc-2861d03b-0 gOwguC dropdown-item'][2]")
+  @FindBy(xpath = "//button[text()= '50' and contains(@class, 'dropdown-item')]")
   public WebElement fiftyRows;
 
-  @FindBy(xpath = "//button[@class = 'sc-2861d03b-0 gOwguC dropdown-item'][1]")
+  @FindBy(xpath = "//button[text()= '100' and contains(@class, 'dropdown-item')]")
   public WebElement oneHundredRows;
 
   @FindBy(
       xpath =
-          "(//div[@class = 'sc-f70bb44c-0 sc-cd4f73ae-0 iowNqu flexBetween']//dd[@class = 'sc-f70bb44c-0 bCgkcs base-text'])[2]")
+          "(//dl[contains(@class, 'coin-metrics-table')]//div[contains(@class, 'flexBetween')]/dd[contains(@class, 'base-text')])[2]")
   public WebElement totalVolume;
 
-  @FindBy(xpath = "//table//p[@class = 'sc-4984dd93-0 eAGSmT']")
+  @FindBy(
+      xpath =
+          "//table[contains(@class, 'cmc-table')]//div[contains(@class, 'hide-ranking-number')]/p")
   public List<WebElement> marketsName;
 
-  @FindBy(xpath = "//table//tr/td[@style = 'text-align: end;'][4]/span")
+  @FindBy(
+      xpath = "//table[contains(@class, 'cmc-table')]//tr/td[@style = 'text-align: end;'][4]/span")
   public List<WebElement> marketsVolume;
 
-  @FindBy(xpath = "//table//tr/td[@style = 'text-align: end;'][5]/span")
+  @FindBy(
+      xpath = "//table[contains(@class, 'cmc-table')]//tr/td[@style = 'text-align: end;'][5]/span")
   public List<WebElement> marketsVolumePercentage;
 
-  @FindBy(xpath = "//span[@class = 'sc-f70bb44c-0 iQEJet sc-90c5a201-2 MXNho']")
+  @FindBy(xpath = "//table[contains(@class, 'cmc-table')]//span[text()= '-']")
   public WebElement invalidSequence;
 
-  @FindBy(xpath = "//*[@id=\"section-coin-chart\"]")
+  // *[@class = 'highcharts-plot-background']
+  @FindBy(xpath = "//*[@id= 'section-coin-chart']")
   public WebElement chartView;
 
   @FindBy(
       xpath =
-          "//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),'/')]")
+          "//*[@id= 'section-coin-chart']//*[contains(@class, 'tooltip')]//span[contains(text(),'/')]")
   public WebElement chartPartialModelDate;
 
   @FindBy(
       xpath =
-          "//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),':00')]")
+          "//*[@id= 'section-coin-chart']//*[contains(@class, 'tooltip')]//span[contains(text(),':00')]")
   public WebElement chartPartialModelTime;
 
   @FindBy(
       xpath =
-          "(//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),'$')])[1]")
+          "//*[@id= 'section-coin-chart']//*[contains(@class, 'tooltip')]//span[contains(text(),'Price:')]/..//span[contains(text(),'$')]")
   public WebElement chartPartialModelPrice;
 
   @FindBy(
       xpath =
-          "(//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),'$')])[2]")
+          "//*[@id= 'section-coin-chart']//*[contains(@class, 'tooltip')]//span[contains(text(),'Vol 24h:')]/..//span[contains(text(),'$')]")
   public WebElement chartPartialModelVol;
 }
