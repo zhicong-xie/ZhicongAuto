@@ -34,7 +34,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public void clickBackToTopButton() {
-    waitForElement(cryptocurrenciesPage.backToTopButton).click();
+    waitForElementClickable(cryptocurrenciesPage.backToTopButton).click();
   }
 
   public void clickSearchBar() {
@@ -69,7 +69,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
   public void clickAcceptCookieButton(){
     if (checkForElement(cryptocurrenciesPage.acceptCookieButton,30)){
       waitForSeconds(3);
-      cryptocurrenciesPage.acceptCookieButton.click();
+      waitForElementClickable(cryptocurrenciesPage.acceptCookieButton).click();
     }
   }
 }

@@ -8,6 +8,7 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class CoinmarketcapCurrencyDetailsStep {
 
@@ -25,11 +26,14 @@ public class CoinmarketcapCurrencyDetailsStep {
     Assert.assertEquals(msg, expected, actual);
   }
 
-  @Then("^the user able to see About LOOM NetWork copy on Coinmarketcap currency details screen$")
-  public void checkLoomNetWorkCopy() {
-    boolean expected = true;
-    String msg = "the About LOOM NetWork copy is displayed incorrect";
-    boolean actual = coinmarketcapCurrencyDetailsFlow.checkLoomNetWorkCopy();
+  @Then(
+      "^the user able to see About LOOM NetWork copy \"([^\"]*)\" on Coinmarketcap currency details screen$")
+  public void checkLoomNetWorkCopy(String expected) {
+    String actual = coinmarketcapCurrencyDetailsFlow.getLoomNetWorkCopy();
+    String msg =
+        String.format(
+            "the About LOOM NetWork expected copy is %s, but LOOM NetWork actual copy is %s",
+            expected, actual);
     Assert.assertEquals(msg, expected, actual);
   }
 
@@ -47,7 +51,8 @@ public class CoinmarketcapCurrencyDetailsStep {
     }
   }
 
-  @When("^the user click (Chart|Markets|About) button on Coinmarketcap currency details screen top banner$")
+  @When(
+      "^the user click (Chart|Markets|About) button on Coinmarketcap currency details screen top banner$")
   public void clickTopButton(String btnName) throws IllegalAccessException {
     switch (btnName) {
       case "Chart":
@@ -70,7 +75,8 @@ public class CoinmarketcapCurrencyDetailsStep {
     coinmarketcapCurrencyDetailsFlow.selectShowRows(item);
   }
 
-  @When("^the user select Metamask icon on Coinmarketcap currency details screen support wallets view$")
+  @When(
+      "^the user select Metamask icon on Coinmarketcap currency details screen support wallets view$")
   public void selectMetamaskIcon() {
     coinmarketcapCurrencyDetailsFlow.selectMetamaskIcon();
   }
@@ -84,8 +90,10 @@ public class CoinmarketcapCurrencyDetailsStep {
     Assert.assertEquals(msg, expected, actual);
   }
 
-  @Then("^the user verify 1D price chart data is align with response on Coinmarketcap currency details screen$")
-  public void verifyOneDayChartAlignResponse() throws IOException {
+  @Then(
+      "^the user verify 1D price chart data is align with response on Coinmarketcap currency details screen$")
+  public void verifyOneDayChartAlignResponse()
+      throws IOException, ParseException, IllegalAccessException {
     boolean expected = true;
     String msg = "1D price chart data is not align with response";
     boolean actual = coinmarketcapCurrencyDetailsFlow.verifyOneDayChartAlignResponse();

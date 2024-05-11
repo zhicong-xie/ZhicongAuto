@@ -26,7 +26,7 @@ public class CryptocurrenciesPage {
   @FindBy(xpath = "//div[@class = 'sc-aef7b723-0 sc-655e743f-2 csqLjn  hide-ranking-number']/p")
   public List<WebElement> currencyNameList;
 
-  @FindBy(xpath = "//div[@class = 'sc-4ce79553-0 hHIalA visible']")
+  @FindBy(id = "scroll-to-top")
   public WebElement backToTopButton;
 
   @FindBy(xpath = "//div[@class = 'sc-e20acb0c-1 fWcxPm']")

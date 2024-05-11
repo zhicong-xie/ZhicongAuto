@@ -61,6 +61,12 @@ public class BaseFlow {
     return w.until(ExpectedConditions.visibilityOf(webElement));
   }
 
+  protected WebElement waitForElementClickable(WebElement webElement) {
+    WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
+    w.until(ExpectedConditions.elementToBeClickable(webElement));
+    return w.until(ExpectedConditions.visibilityOf(webElement));
+  }
+
   protected WebElement waitForElement(WebElement webElement, Integer timeInSeconds) {
     WebDriverWait w = new WebDriverWait(webDriver, timeInSeconds);
     return w.until(ExpectedConditions.visibilityOf(webElement));
@@ -271,15 +277,13 @@ public class BaseFlow {
   }
 
   protected String timestampFormatConversion(String before) throws ParseException {
-    String after = "";
+    String afterTimestamp = "";
 
-    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    Date date = inputFormat.parse(before);
+    long beforeTimestamp = Long.parseLong(before)*1000L;
 
-    SimpleDateFormat outputFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa", Locale.ENGLISH);
-    after = outputFormat.format(date);
-
-    return after;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy h:mm:ss aa", Locale.ENGLISH);
+    afterTimestamp = simpleDateFormat.format(beforeTimestamp);
+    return afterTimestamp;
   }
 
   protected BigDecimal virtualCurrencyUnitConversion(String amount) throws IllegalAccessException {
@@ -366,7 +370,7 @@ public class BaseFlow {
   }
 
   protected HashMap<String, HashMap<BigDecimal, BigDecimal>> getOneDayLoomPriceData(
-      JSONObject response) {
+      JSONObject response) throws ParseException {
 
     HashMap<String, HashMap<BigDecimal, BigDecimal>> oneDayLoomPriceData = new LinkedHashMap<>();
 
@@ -379,7 +383,7 @@ public class BaseFlow {
       BigDecimal price = jsonArray.getBigDecimal(0).setScale(17, RoundingMode.HALF_UP);
       BigDecimal vol = jsonArray.getBigDecimal(1).setScale(2, RoundingMode.HALF_UP);
       data.put(price, vol);
-      oneDayLoomPriceData.put(key, data);
+      oneDayLoomPriceData.put(timestampFormatConversion(key), data);
     }
 
     System.out.println("1D LOOM Expected Price Data : " + oneDayLoomPriceData);
@@ -393,11 +397,11 @@ public class BaseFlow {
 
     // 获取元素的尺寸
     Dimension elementSize = webElement.getSize();
-    int width = elementSize.getWidth();
+    int width = (elementSize.getWidth())*3/4;
 
-    Random random = new Random();
     for (int i = 0; i < number; i++) {
-      int randomNumber = random.nextInt(width + 1 -(width/2));
+      Random random = new Random();
+      int randomNumber = (random.nextInt(width + 1))-(width/2);
       data.add(randomNumber);
     }
 

@@ -20,15 +20,16 @@ public class CoinmarketcapCurrencyDetailsPage {
   @FindBy(id = "section-coin-overview")
   public WebElement coinmarketcapCurrencyDetailsTitle;
 
-  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 hNnCrE top']")
-  public WebElement loomNetWorkTitle;
+//  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 hNnCrE top']")
+//  public WebElement loomNetWorkTitle;
+//
+//  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 lcMKAk show']//p")
+//  public List<WebElement> loomNetWorkDescriptionList;
 
-  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 lcMKAk show']//p")
-  public List<WebElement> loomNetWorkDescriptionList;
+  @FindBy(xpath = "(//div[@class = 'readmoreDesc'])[1]")
+  public WebElement loomNetWorkAboutCopy;
 
-  @FindBy(
-      xpath =
-          "//button[@class = 'sc-f70bb44c-0 iQEJet BaseButton_base__aMbeB BaseButton_t-default__fZuC3 BaseButton_size-sm__RoliW BaseButton_v-tertiary___qgax BaseButton_vd__2Cn0v BaseButton_only-icon___aRCM']")
+  @FindBy(xpath = "(//div[@data-module-name = 'Coin-stats']//button)[1]")
   public WebElement followButton;
 
   @FindBy(xpath = "//span[@class = 'watchlist-star-text']")
@@ -76,19 +77,24 @@ public class CoinmarketcapCurrencyDetailsPage {
   @FindBy(xpath = "//span[@class = 'sc-f70bb44c-0 iQEJet sc-90c5a201-2 MXNho']")
   public WebElement invalidSequence;
 
-  @FindBy(xpath = "//div[@class = 'chart']/*[@class = 'tv-lightweight-charts']")
+  @FindBy(xpath = "//*[@id=\"section-coin-chart\"]")
   public WebElement chartView;
 
-  @FindBy(xpath = "//div[@class = 'floating-tooltip']/div[1]//*[@class = 'primary']")
+  @FindBy(xpath = "//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),'/')]")
   public WebElement chartPartialModelDate;
 
-  @FindBy(xpath = "//div[@class = 'floating-tooltip']/div[1]//*[@class = 'sub']")
+  @FindBy(
+      xpath =
+          "//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),':00')]")
   public WebElement chartPartialModelTime;
 
-
-  @FindBy(xpath = "//div[@class = 'floating-tooltip']/div[2]//*[@class = 'number']")
+  @FindBy(
+      xpath =
+          "(//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),'$')])[1]")
   public WebElement chartPartialModelPrice;
 
-  @FindBy(xpath = "//div[@class = 'floating-tooltip']/div[3]//*[@class = 'number']")
+  @FindBy(
+      xpath =
+          "(//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),'$')])[2]")
   public WebElement chartPartialModelVol;
 }

@@ -28,4 +28,8 @@ public class WebDriverConfig {
   public static WebDriver getDriver() {
     return webDriver;
   }
+
+  public static WebDriverConfig getWebDriverConfig(){
+    return webDriverConfig;
+  }
 }

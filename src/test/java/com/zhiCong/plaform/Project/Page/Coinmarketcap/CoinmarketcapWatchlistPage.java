@@ -17,9 +17,9 @@ public class CoinmarketcapWatchlistPage {
     PageFactory.initElements(webDriver, this);
   }
 
-  @FindBy(xpath = "//div[@class = 'sc-969b181e-49 kRyNSr']")
+  @FindBy(xpath = "//h1[contains(text(),'Create Your Crypto Watchlist Today')]")
   public WebElement watchlistListTitle;
 
-  @FindBy(xpath = "//div[@class = 'sc-aef7b723-0 sc-adbfcfff-1 klolJt']//p")
+  @FindBy(xpath = "//div[@class = 'sc-aef7b723-0 sc-1c5f2868-2 bhBHDD  hide-ranking-number']//p")
   public List<WebElement> watchlistListName;
 }

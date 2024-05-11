@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class ChromeFlow extends BaseFlow {
 
   private WebDriver webDriver;
+  private WebDriverConfig webDriverConfig;
 
   public ChromeFlow() {
     webDriver = WebDriverConfig.getDriver();
@@ -36,6 +37,8 @@ public class ChromeFlow extends BaseFlow {
 
   public void quitApp() {
     webDriver.quit();
+    webDriverConfig= null;
+    webDriver = null;
   }
 
   public void maximizeWindow() {
