@@ -79,24 +79,27 @@ public class BaseFlow {
     return w.until(ExpectedConditions.visibilityOf(webElements.get(0)));
   }
 
-  protected void waitForSeconds(int waitingSecods) {
+  protected void waitForSeconds(int waitingSeconds) {
     try {
-      Thread.sleep(waitingSecods * 1000);
+      Thread.sleep(waitingSeconds * 1000);
     } catch (Exception ex) {
       ex.printStackTrace();
     }
   }
 
   protected void swipeToDown() {
+    // 滑动默认600pixel
     ((JavascriptExecutor) webDriver)
         .executeScript(String.format("window.scrollBy(0, %d);", defaultSwipePixel));
   }
 
   protected void swipeToDown(int pixel) {
+    // 滑动指定pixel
     ((JavascriptExecutor) webDriver).executeScript(String.format("window.scrollBy(0, %d);", pixel));
   }
 
   protected WebElement swipeToDownFindElementByJs(WebElement webElement) {
+    // 使用JS 滑动到element出现的位置
     ((JavascriptExecutor) webDriver)
         .executeScript("arguments[0].scrollIntoView(false);", webElement);
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
@@ -104,6 +107,7 @@ public class BaseFlow {
   }
 
   protected void swipeToBottom() {
+    // 每次滑动半个窗口只止滑动到页面底部
     JavascriptExecutor js = (JavascriptExecutor) webDriver;
     Dimension windowSize = webDriver.manage().window().getSize();
     int height = windowSize.height * 3 / 2;
@@ -122,6 +126,7 @@ public class BaseFlow {
   }
 
   protected void swipeDownToFindElement(WebElement webElement) {
+    // 向下滑动寻找element
     for (int i = 0; i < 10; i++) {
       if (checkForElement(webElement, 3)) {
         break;
@@ -133,6 +138,7 @@ public class BaseFlow {
   }
 
   protected WebElement findByText(String text) {
+    // 模糊寻找copy定位
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
     return w.until(
         ExpectedConditions.visibilityOf(
@@ -156,6 +162,7 @@ public class BaseFlow {
   }
 
   protected String keepNumbersDecimalPoints(String data) {
+    // 仅保留字符串的数字负号和小数点
     Pattern pattern = Pattern.compile("[^\\d.-]");
     Matcher matcher = pattern.matcher(data);
     return matcher.replaceAll("");
@@ -237,27 +244,28 @@ public class BaseFlow {
   }
 
   protected BigDecimal virtualCurrencyUnitConversion(String amount) throws IllegalAccessException {
-
+    // 去除字符串的'$'符号
     amount = amount.replaceAll("$", "");
     char unit = amount.charAt(amount.length() - 1);
-    BigDecimal date;
+    BigDecimal data;
+    // 根据字符串最后一位的单位将字符串转化为BigDecimal
     BigDecimal before = new BigDecimal(amount.substring(1, amount.length() - 1));
 
     switch (unit) {
       case 'T':
-        date = before.multiply(new BigDecimal(1000000000000.00));
+        data = before.multiply(new BigDecimal(1000000000000.00));
         break;
       case 'B':
-        date = before.multiply(new BigDecimal(1000000000.00));
+        data = before.multiply(new BigDecimal(1000000000.00));
         break;
       case 'M':
-        date = before.multiply(new BigDecimal(1000000.00));
+        data = before.multiply(new BigDecimal(1000000.00));
         break;
       default:
         throw new IllegalAccessException(String.format("unexpected value for %s", unit));
     }
-    System.out.println("Format after format conversion : " + date);
-    return date;
+    System.out.println("Value after format conversion : " + data);
+    return data;
   }
 
   protected HashMap<String, HashMap<BigDecimal, BigDecimal>> getOneDayLoomPriceData(
@@ -287,7 +295,7 @@ public class BaseFlow {
 
     // 获取元素的尺寸
     Dimension elementSize = webElement.getSize();
-    int width = (elementSize.getWidth()) * 3 / 4;
+    int width = (elementSize.getWidth()) * 3 / 5;
 
     for (int i = 0; i < number; i++) {
       Random random = new Random();
