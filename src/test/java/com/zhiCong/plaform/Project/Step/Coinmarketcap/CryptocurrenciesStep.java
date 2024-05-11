@@ -29,8 +29,7 @@ public class CryptocurrenciesStep {
     Assert.assertEquals(msg, expected, actual);
   }
 
-  @When(
-      "^the user click (Back to top button|Search bar) on Coinmarketcap screen$")
+  @When("^the user click (Back to top button|Search bar) on Coinmarketcap screen$")
   public void clickButton(String btnName) throws IllegalAccessException {
     switch (btnName) {
       case "Back to top button":

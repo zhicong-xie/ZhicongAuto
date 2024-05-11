@@ -50,8 +50,8 @@ public class CryptocurrenciesFlow extends BaseFlow {
     waitForElement(cryptocurrenciesPage.searchInputBar).sendKeys(data);
   }
 
-  public void clickAcceptCookieButton(){
-    if (checkForElement(cryptocurrenciesPage.acceptCookieButton,30)){
+  public void clickAcceptCookieButton() {
+    if (checkForElement(cryptocurrenciesPage.acceptCookieButton, 30)) {
       waitForSeconds(5);
       waitForElementClickable(cryptocurrenciesPage.acceptCookieButton).click();
     }

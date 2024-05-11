@@ -20,7 +20,8 @@ public class CryptocurrenciesPage {
   @FindBy(xpath = "//*[contains(@class, 'cmc-logo tooltip')]")
   public WebElement coinmarketcapTitle;
 
-  @FindBy(xpath = "//*[contains(@class, 'cmc-table')]//*[contains(@class, 'hide-ranking-number')]/p")
+  @FindBy(
+      xpath = "//*[contains(@class, 'cmc-table')]//*[contains(@class, 'hide-ranking-number')]/p")
   public List<WebElement> currencyNameList;
 
   @FindBy(id = "scroll-to-top")

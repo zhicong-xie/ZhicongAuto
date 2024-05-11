@@ -38,7 +38,9 @@ public class CoinmarketcapCurrencyDetailsPage {
   @FindBy(xpath = "//span[@data-title = 'About']")
   public WebElement aboutButton;
 
-  @FindBy(xpath = "//div[@class = 'sc-aef7b723-0 sc-df1620aa-1 jKiFcK']/div[@class = 'sc-aef7b723-0 sc-4465b840-0 ebFoZm']")
+  @FindBy(
+      xpath =
+          "//div[@class = 'sc-aef7b723-0 sc-df1620aa-1 jKiFcK']/div[@class = 'sc-aef7b723-0 sc-4465b840-0 ebFoZm']")
   public WebElement rowsDropDown;
 
   @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 iQEJet icons flexStart showInDesktop']/img[2]")
@@ -56,7 +58,9 @@ public class CoinmarketcapCurrencyDetailsPage {
   @FindBy(xpath = "//button[@class = 'sc-2861d03b-0 gOwguC dropdown-item'][1]")
   public WebElement oneHundredRows;
 
-  @FindBy(xpath = "(//div[@class = 'sc-f70bb44c-0 sc-cd4f73ae-0 iowNqu flexBetween']//dd[@class = 'sc-f70bb44c-0 bCgkcs base-text'])[2]")
+  @FindBy(
+      xpath =
+          "(//div[@class = 'sc-f70bb44c-0 sc-cd4f73ae-0 iowNqu flexBetween']//dd[@class = 'sc-f70bb44c-0 bCgkcs base-text'])[2]")
   public WebElement totalVolume;
 
   @FindBy(xpath = "//table//p[@class = 'sc-4984dd93-0 eAGSmT']")
@@ -74,7 +78,9 @@ public class CoinmarketcapCurrencyDetailsPage {
   @FindBy(xpath = "//*[@id=\"section-coin-chart\"]")
   public WebElement chartView;
 
-  @FindBy(xpath = "//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),'/')]")
+  @FindBy(
+      xpath =
+          "//*[@id=\"section-coin-chart\"]//*[contains(@class, 'tooltip')]//span[contains(text(),'/')]")
   public WebElement chartPartialModelDate;
 
   @FindBy(

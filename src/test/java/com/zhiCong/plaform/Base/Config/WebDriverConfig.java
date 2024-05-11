@@ -18,15 +18,11 @@ public class WebDriverConfig {
   private WebDriverConfig() {
     System.setProperty(
         "webdriver.chrome.driver",
-            "/Users/automatiautomationon/Downloads/chromedriver-mac-x64 2/chromedriver");
+        "/Users/automatiautomationon/Downloads/chromedriver-mac-x64 2/chromedriver");
     webDriver = new ChromeDriver();
   }
 
   public static WebDriver getDriver() {
     return webDriver;
-  }
-
-  public static WebDriverConfig getWebDriverConfig(){
-    return webDriverConfig;
   }
 }

@@ -5,7 +5,6 @@ import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
 import com.zhiCong.Plaform.Project.Page.Coinmarketcap.CoinmarketcapCurrencyDetailsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -29,7 +28,10 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
   }
 
   public String getLoomNetWorkCopy() {
-    return waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkAboutCopy).getText().replaceAll("\n","").trim();
+    return waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkAboutCopy)
+        .getText()
+        .replaceAll("\n", "")
+        .trim();
   }
 
   public void clickFollowButton() {
