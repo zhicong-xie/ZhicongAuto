@@ -2,7 +2,6 @@ package com.zhiCong.Plaform.Project.Flow.Coinmarketcap;
 
 import com.zhiCong.Plaform.Base.BaseFlow;
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
-import com.zhiCong.Plaform.Base.LocaleCSVParser;
 import com.zhiCong.Plaform.Project.Page.Coinmarketcap.CoinmarketcapCurrencyDetailsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,20 +29,6 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
   }
 
   public String getLoomNetWorkCopy() {
-//    swipeToDownFindElementByJs(coinmarketcapCurrencyDetailsPage.loomNetWorkTitle);
-//    String loomNetworkTitle =
-//        waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkTitle).getText().trim();
-//    String loomNetWorkDescription = "";
-//    for (WebElement webElement : coinmarketcapCurrencyDetailsPage.loomNetWorkDescriptionList) {
-//      loomNetWorkDescription = loomNetWorkDescription + webElement.getText().trim();
-//    }
-//    System.out.println("actual copy title" + loomNetworkTitle);
-//    System.out.println("actual copy description" + loomNetWorkDescription);
-//
-//    return LocaleCSVParser.getLocaleValue("About_LOOM_Network_title").equals(loomNetworkTitle)
-//        && LocaleCSVParser.getLocaleValue("About_LOOM_Network_description")
-//            .equals(loomNetWorkDescription);
-
     return waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkAboutCopy).getText().replaceAll("\n","").trim();
   }
 

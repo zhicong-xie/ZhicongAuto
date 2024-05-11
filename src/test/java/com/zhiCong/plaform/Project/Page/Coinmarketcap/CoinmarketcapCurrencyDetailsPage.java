@@ -20,12 +20,6 @@ public class CoinmarketcapCurrencyDetailsPage {
   @FindBy(id = "section-coin-overview")
   public WebElement coinmarketcapCurrencyDetailsTitle;
 
-//  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 hNnCrE top']")
-//  public WebElement loomNetWorkTitle;
-//
-//  @FindBy(xpath = "//div[@class = 'sc-f70bb44c-0 lcMKAk show']//p")
-//  public List<WebElement> loomNetWorkDescriptionList;
-
   @FindBy(xpath = "(//div[@class = 'readmoreDesc'])[1]")
   public WebElement loomNetWorkAboutCopy;
 

@@ -50,25 +50,9 @@ public class CryptocurrenciesFlow extends BaseFlow {
     waitForElement(cryptocurrenciesPage.searchInputBar).sendKeys(data);
   }
 
-  public void clickExchangeButton() {
-    waitForElement(cryptocurrenciesPage.exchangeButton).click();
-  }
-
-  public boolean isTopCryptocurrencySpotExchangesScreenDisplayed() {
-    return checkForElement(cryptocurrenciesPage.topCryptocurrencySpotExchangesTitle);
-  }
-
-  public void selectSpotExchange(String spotExchangeName) {
-    findByText(spotExchangeName).click();
-  }
-
-  public void clickFearAndGreedIndexChat() {
-    waitForElement(cryptocurrenciesPage.fearAndGreedIndexChat).click();
-  }
-
   public void clickAcceptCookieButton(){
     if (checkForElement(cryptocurrenciesPage.acceptCookieButton,30)){
-      waitForSeconds(3);
+      waitForSeconds(5);
       waitForElementClickable(cryptocurrenciesPage.acceptCookieButton).click();
     }
   }

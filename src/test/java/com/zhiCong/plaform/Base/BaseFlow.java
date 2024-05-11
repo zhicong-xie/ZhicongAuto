@@ -1,6 +1,5 @@
 package com.zhiCong.Plaform.Base;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,13 +19,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import static com.google.common.collect.Maps.newLinkedHashMap;
 
 public class BaseFlow {
 
   private final int defaultWaitingTime = 20;
-  private final int defaultShortWaitingTime = 3;
   private final int defaultNumOfSwipe = 3;
   private WebDriver webDriver;
   private final int defaultSwipePixel = 600;
@@ -142,11 +139,6 @@ public class BaseFlow {
             webDriver.findElement(By.xpath(String.format("//*[contains(text(),'%s')]", text)))));
   }
 
-  protected void mouseMovementAndClickElement(WebElement webElement) {
-    Actions actions = new Actions(webDriver);
-    actions.moveToElement(webElement).click().perform();
-  }
-
   protected void mouseMovement(WebElement webElement) {
     Actions actions = new Actions(webDriver);
     for (int i = 0; i < defaultNumOfSwipe; i++) {
@@ -161,12 +153,6 @@ public class BaseFlow {
       actions.moveToElement(webElement, x, y).pause(2000).build().perform();
       waitForSeconds(1);
     }
-  }
-
-  protected void mouseMovementWithOffset(WebElement webElement, int xOffset, int yOffset) {
-    Actions actions = new Actions(webDriver);
-    actions.moveToElement(webElement, xOffset, yOffset).perform();
-    waitForSeconds(5);
   }
 
   protected String keepNumbersDecimalPoints(String data) {
@@ -239,49 +225,13 @@ public class BaseFlow {
     return jsonObject;
   }
 
-  protected HashMap<String, BigDecimal> getMarketCapData(JSONObject jsonObject)
-      throws ParseException {
-    HashMap<String, BigDecimal> hashMap = new LinkedHashMap<>();
-
-    JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("quotes");
-
-    for (int i = 0; i < jsonArray.length(); i++) {
-      JSONObject obj = jsonArray.getJSONObject(i);
-
-      JSONArray jsonArray1 = obj.getJSONArray("quote");
-      JSONObject object = jsonArray1.getJSONObject(0);
-      String timestamp = object.getString("timestamp");
-      BigDecimal totalMarketCap = object.getBigDecimal("totalMarketCap");
-      hashMap.put(timestampFormatConversion(timestamp), totalMarketCap);
-    }
-
-    return hashMap;
-  }
-
-  protected HashMap<String, BigDecimal> getVolumeData(JSONObject jsonObject) throws ParseException {
-    HashMap<String, BigDecimal> hashMap = new LinkedHashMap<>();
-
-    JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("quotes");
-
-    for (int i = 0; i < jsonArray.length(); i++) {
-      JSONObject obj = jsonArray.getJSONObject(i);
-
-      JSONArray jsonArray1 = obj.getJSONArray("quote");
-      JSONObject object = jsonArray1.getJSONObject(0);
-      String timestamp = object.getString("timestamp");
-      BigDecimal totalMarketCap = object.getBigDecimal("totalVolume24H");
-      hashMap.put(timestampFormatConversion(timestamp), totalMarketCap);
-    }
-
-    return hashMap;
-  }
-
-  protected String timestampFormatConversion(String before) throws ParseException {
+  protected String timestampFormatConversion(String before) {
     String afterTimestamp = "";
 
-    long beforeTimestamp = Long.parseLong(before)*1000L;
+    long beforeTimestamp = Long.parseLong(before) * 1000L;
 
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy h:mm:ss aa", Locale.ENGLISH);
+    SimpleDateFormat simpleDateFormat =
+        new SimpleDateFormat("MM/dd/yyyy h:mm:ss aa", Locale.ENGLISH);
     afterTimestamp = simpleDateFormat.format(beforeTimestamp);
     return afterTimestamp;
   }
@@ -310,65 +260,6 @@ public class BaseFlow {
     return date;
   }
 
-  protected long getPreviousDay() {
-    Calendar calendar = Calendar.getInstance();
-
-    calendar.add(Calendar.DAY_OF_MONTH, -1);
-    calendar.set(Calendar.SECOND, 0);
-
-    long timestamp = calendar.getTimeInMillis() / 1000;
-
-    System.out.println("Previous Day Timestamp : " + timestamp);
-
-    return timestamp;
-  }
-
-  protected long getNextsDay() {
-    Calendar calendar = Calendar.getInstance();
-
-    calendar.add(Calendar.DAY_OF_MONTH, +1);
-
-    calendar.set(Calendar.HOUR, 0);
-    calendar.set(Calendar.MINUTE, 0);
-    calendar.set(Calendar.SECOND, 0);
-
-    long timestamp = calendar.getTimeInMillis() / 1000;
-
-    System.out.println("Next Day Timestamp : " + timestamp);
-
-    return timestamp;
-  }
-
-  protected HashMap<String, HashMap<String, BigDecimal>> getBitcoinDominanceData(
-      JSONObject jsonObject) throws ParseException {
-
-    HashMap<String, HashMap<String, BigDecimal>> actualData = new LinkedHashMap<>();
-
-    JSONArray jsonArray = jsonObject.getJSONObject("data").getJSONArray("quotes");
-
-    for (int i = 0; i < jsonArray.length(); i++) {
-      HashMap<String, BigDecimal> hashMap = new LinkedHashMap<>();
-      JSONObject obj = jsonArray.getJSONObject(i);
-      String timestamp = obj.getString("timestamp");
-      JSONArray jsonArray1 = obj.getJSONArray("quote");
-
-      for (int j = 0; j < jsonArray1.length(); j++) {
-
-        if (jsonArray1.getJSONObject(j).getString("name").equalsIgnoreCase("others")) {
-          hashMap.put("Others", jsonArray1.getJSONObject(j).getBigDecimal("marketCap"));
-        } else if (jsonArray1.getJSONObject(j).getString("name").equals("global")) {
-          hashMap.put("global", jsonArray1.getJSONObject(j).getBigDecimal("marketCap"));
-        } else {
-          hashMap.put(
-              jsonArray1.getJSONObject(j).getString("symbol"),
-              jsonArray1.getJSONObject(j).getBigDecimal("marketCap"));
-        }
-      }
-      actualData.put(timestampFormatConversion(timestamp), hashMap);
-    }
-    return actualData;
-  }
-
   protected HashMap<String, HashMap<BigDecimal, BigDecimal>> getOneDayLoomPriceData(
       JSONObject response) throws ParseException {
 
@@ -391,17 +282,16 @@ public class BaseFlow {
     return oneDayLoomPriceData;
   }
 
-  protected List<Integer> getRandomCoordinatesForElement(
-      Integer number, WebElement webElement) {
+  protected List<Integer> getRandomCoordinatesForElement(Integer number, WebElement webElement) {
     List<Integer> data = new LinkedList<>();
 
     // 获取元素的尺寸
     Dimension elementSize = webElement.getSize();
-    int width = (elementSize.getWidth())*3/4;
+    int width = (elementSize.getWidth()) * 3 / 4;
 
     for (int i = 0; i < number; i++) {
       Random random = new Random();
-      int randomNumber = (random.nextInt(width + 1))-(width/2);
+      int randomNumber = (random.nextInt(width + 1)) - (width / 2);
       data.add(randomNumber);
     }
 
