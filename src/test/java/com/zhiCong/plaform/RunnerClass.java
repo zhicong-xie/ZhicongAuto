@@ -19,7 +19,7 @@ import java.util.List;
       "html:target/cucumber-report/",
       "json:target/cucumber-report/cucumber.json"
     },
-    //        tags = "@AC7.12",
+    //            tags = "@AC7.13",
     features = {"src/test/resources/Feature"})
 public class RunnerClass {
 
