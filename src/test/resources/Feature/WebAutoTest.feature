@@ -54,3 +54,18 @@ Feature: Web auto testing
     Then the user able to see Coinmarketcap watchlist screen
     And the user able to see "LOOM" currency in watchlist on Coinmarketcap watchlist screen
     When the user quit app
+
+  @AC7.14
+  Scenario: Restful api call "/v1/cryptocurrency/map" with parameters
+    Given the user use Restful api call /v1/cryptocurrency/map api with parameters
+      | start          | 1      |
+      | limit          | 100    |
+      | listing_status | active |
+    When the user get Restful api call /v1/cryptocurrency/map api response
+    Then the user able to see Restful api states is 200
+
+  @AC7.14
+  Scenario: Restful api call "/v1/cryptocurrency/map"
+    Given the user use Restful api call /v1/cryptocurrency/map api
+    When the user get Restful api call /v1/cryptocurrency/map api response
+    Then the user able to see Restful api states is 200
