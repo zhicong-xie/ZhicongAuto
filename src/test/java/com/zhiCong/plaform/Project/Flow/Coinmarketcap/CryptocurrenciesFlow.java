@@ -22,17 +22,18 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public int swipeDownGetAllCurrencyListSize() {
-    //等待Currency 列表刷新
+    // 等待Currency 列表刷新
     waitForElements(cryptocurrenciesPage.currencyNameList);
-    //滑动到页面底部
+    // 滑动到页面底部
     swipeToBottom();
-    //获取Currency list name
+    // 获取Currency list name
     List<WebElement> currencyNameList = cryptocurrenciesPage.currencyNameList;
     List<String> allCurrencyName = new ArrayList<>();
     for (WebElement webElement : currencyNameList) {
       allCurrencyName.add(webElement.getText());
     }
     System.out.println("All currency list : " + allCurrencyName);
+    System.out.println("Currency list size : " + currencyNameList.size());
     return currencyNameList.size();
   }
 
@@ -45,8 +46,8 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public void selectFirstSearchResult() {
-    //等待search result刷新
-    waitForSeconds(5);
+    // 等待search result刷新
+    waitForSeconds(10);
     waitForElement(cryptocurrenciesPage.searchResultList).click();
   }
 
@@ -55,10 +56,10 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public void clickAcceptCookieButton() {
-    //如果Accept Cookie Button存在则点击
+    // 如果Accept Cookie Button存在则点击
     if (checkForElement(cryptocurrenciesPage.acceptCookieButton, 30)) {
-      waitForSeconds(5);
-      waitForElementClickable(cryptocurrenciesPage.acceptCookieButton).click();
+      swipeToDown(50);
+      cryptocurrenciesPage.acceptCookieButton.click();
     }
   }
 }

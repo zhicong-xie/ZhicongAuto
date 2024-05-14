@@ -61,6 +61,7 @@ Feature: Web auto testing
       | start          | 1      |
       | limit          | 100    |
       | listing_status | active |
+      | sort           | id     |
     When the user get Restful api call /v1/cryptocurrency/map api response
     Then the user able to see Restful api states is 200
 

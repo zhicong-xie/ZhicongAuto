@@ -81,30 +81,6 @@ public class RestfulApiFlow {
     }
   }
 
-  //    public void makeAPICall(String uri, List<NameValuePair> parameters)
-  //            throws URISyntaxException, IOException {
-  //
-  //        URIBuilder query = new URIBuilder(uri);
-  //        query.addParameters(parameters);
-  //
-  //        CloseableHttpClient client = HttpClients.createDefault();
-  //        HttpGet request = new HttpGet(query.build());
-  //
-  //        request.setHeader(HttpHeaders.ACCEPT, "application/json");
-  //        request.addHeader("X-CMC_PRO_API_KEY", apiKey);
-  //
-  //        CloseableHttpResponse response = client.execute(request);
-  //
-  //        try {
-  //            apiStates =  response.getStatusLine().toString();
-  //            HttpEntity entity = response.getEntity();
-  //            apiResponse = EntityUtils.toString(entity);
-  //            EntityUtils.consume(entity);
-  //        } finally {
-  //            response.close();
-  //        }
-  //    }
-
   public String getApiStates() {
     System.out.println("API States : " + apiStates);
     return apiStates;
