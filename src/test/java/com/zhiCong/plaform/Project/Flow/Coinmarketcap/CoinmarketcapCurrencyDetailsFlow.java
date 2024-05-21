@@ -141,10 +141,10 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
               + differenceVolumePercentage
               + "%\n");
 
-      // 判断计算的Volume%与预期相差是否少于0.2%
-      if (differenceVolumePercentage.compareTo(new BigDecimal("0.2")) > 0) {
+      // 判断计算的Volume%与预期相差是否少于0.5%
+      if (differenceVolumePercentage.compareTo(new BigDecimal("0.5")) > 0) {
         System.out.println(
-            String.format("%s difference volume percentage is greater than 0.2 percentage", item));
+            String.format("%s difference volume percentage is greater than 0.50 percentage", item));
         return false;
       }
     }

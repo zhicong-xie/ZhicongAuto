@@ -138,7 +138,7 @@ public class BaseFlow {
   }
 
   protected WebElement findByText(String text) {
-    // 模糊寻找copy定位
+    // 模糊寻找text定位
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
     return w.until(
         ExpectedConditions.visibilityOf(
@@ -147,10 +147,7 @@ public class BaseFlow {
 
   protected void mouseMovement(WebElement webElement) {
     Actions actions = new Actions(webDriver);
-    for (int i = 0; i < defaultNumOfSwipe; i++) {
-      actions.moveToElement(webElement).pause(2000).perform();
-      waitForSeconds(1);
-    }
+    actions.moveToElement(webElement).pause(2000).perform();
   }
 
   protected void mouseMovementForCoordinate(WebElement webElement, Integer x, Integer y) {
@@ -163,6 +160,7 @@ public class BaseFlow {
 
   protected String keepNumbersDecimalPoints(String data) {
     // 仅保留字符串的数字负号和小数点
+
     Pattern pattern = Pattern.compile("[^\\d.-]");
     Matcher matcher = pattern.matcher(data);
     return matcher.replaceAll("");

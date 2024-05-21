@@ -47,7 +47,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
 
   public void selectFirstSearchResult() {
     // 等待search result刷新
-    waitForSeconds(10);
+    waitForSeconds(8);
     waitForElement(cryptocurrenciesPage.searchResultList).click();
   }
 
@@ -58,7 +58,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
   public void clickAcceptCookieButton() {
     // 如果Accept Cookie Button存在则点击
     if (checkForElement(cryptocurrenciesPage.acceptCookieButton, 30)) {
-      swipeToDown(50);
+      swipeToDown(100);
       cryptocurrenciesPage.acceptCookieButton.click();
     }
   }
