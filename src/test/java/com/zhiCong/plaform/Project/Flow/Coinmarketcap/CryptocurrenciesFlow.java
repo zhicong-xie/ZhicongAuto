@@ -47,8 +47,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
 
   public void selectFirstSearchResult() {
     // 等待search result刷新
-    waitForSeconds(8);
-    waitForElement(cryptocurrenciesPage.searchResultList).click();
+    waitForElement(cryptocurrenciesPage.searchResultList,60).click();
   }
 
   public void inputSearchInputBar(String data) {

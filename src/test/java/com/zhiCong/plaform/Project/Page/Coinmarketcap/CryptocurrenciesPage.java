@@ -33,7 +33,7 @@ public class CryptocurrenciesPage {
   @FindBy(xpath = "//input[contains(@class, 'desktop-input')]")
   public WebElement searchInputBar;
 
-  @FindBy(xpath = "//div[contains(@class, 'jBxbIy')][1]//span[contains(@class, 'coin-name')]")
+  @FindBy(xpath = "//div[contains(@class, 'jBxbIy')]/div[contains(text(),'Cryptoassets')]/..//span[contains(@class, 'coin-name')]")
   public WebElement searchResultList;
 
   @FindBy(id = "onetrust-accept-btn-handler")

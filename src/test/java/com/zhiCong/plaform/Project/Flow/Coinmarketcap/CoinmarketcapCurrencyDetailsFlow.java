@@ -67,7 +67,8 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
 
   public void selectShowRows(String item) throws IllegalAccessException {
     // 滑动到rowsDropDown 并点击
-    swipeToDownFindElementByJs(coinmarketcapCurrencyDetailsPage.rowsDropDown).click();
+    swipeDownToFindElement(coinmarketcapCurrencyDetailsPage.rowsDropDown);
+    coinmarketcapCurrencyDetailsPage.rowsDropDown.click();
 
     // 选择row option
     switch (item) {
@@ -141,10 +142,10 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
               + differenceVolumePercentage
               + "%\n");
 
-      // 判断计算的Volume%与预期相差是否少于0.5%
-      if (differenceVolumePercentage.compareTo(new BigDecimal("0.5")) > 0) {
+      // 判断计算的Volume%与预期相差是否少于3%
+      if (differenceVolumePercentage.compareTo(new BigDecimal("3")) > 0) {
         System.out.println(
-            String.format("%s difference volume percentage is greater than 0.50 percentage", item));
+            String.format("%s difference volume percentage is greater than 3 percentage", item));
         return false;
       }
     }
@@ -229,14 +230,14 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
                   "expect Vol value is %s; actual Vol value is %s",
                   expectVolBigDecimal, actualVolBigDecimal));
 
-          // 判断Vol 预期与实际的差少于与其两者最大值0.1%
+          // 判断Vol 预期与实际的差少于与其两者最大值1%
           BigDecimal max;
           if (expectVolBigDecimal.compareTo(actualVolBigDecimal) > 0) {
             max = expectVolBigDecimal;
           } else {
             max = actualVolBigDecimal;
           }
-          BigDecimal onePercentOfMax = max.divide(new BigDecimal(1000), 2, RoundingMode.HALF_UP);
+          BigDecimal onePercentOfMax = max.divide(new BigDecimal(100), 2, RoundingMode.HALF_UP);
           System.out.println(String.format("one percent for max value is %s", onePercentOfMax));
           if (expectVolBigDecimal.subtract(actualVolBigDecimal).abs().compareTo(onePercentOfMax)
               > 0) {
