@@ -40,6 +40,6 @@ public class RunnerClass {
     ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, configuration);
     reportBuilder.generateReports();
     System.out.println(
-        "The cucumber report generated! Save in ZhicongWebAuto/target/cucumberReport/cucumber-html-reports folder");
+        "The cucumber report generated! Save in 'ZhicongWebAuto/target/cucumberReport/cucumber-html-reports' folder");
   }
 }
