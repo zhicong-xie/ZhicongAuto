@@ -19,7 +19,7 @@ import java.util.List;
       "html:target/cucumber-report/",
       "json:target/cucumber-report/cucumber.json"
     },
-    //            tags = "@AC7.13",
+    //                tags = "@AC7.14",
     features = {"src/test/resources/Feature"})
 public class RunnerClass {
 
@@ -39,6 +39,7 @@ public class RunnerClass {
     configuration.addPresentationModes(PresentationMode.EXPAND_ALL_STEPS);
     ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, configuration);
     reportBuilder.generateReports();
-    System.out.println("The cucumber report generated!");
+    System.out.println(
+        "The cucumber report generated! Save in ZhicongWebAuto/target/cucumberReport/cucumber-html-reports folder");
   }
 }
