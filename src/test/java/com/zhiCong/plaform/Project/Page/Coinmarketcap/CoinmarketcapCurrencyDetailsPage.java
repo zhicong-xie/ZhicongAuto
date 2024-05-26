@@ -62,6 +62,11 @@ public class CoinmarketcapCurrencyDetailsPage {
   public WebElement totalVolume;
 
   @FindBy(
+          xpath =
+                  "//table[contains(@class, 'cmc-table')]//div[contains(@class, 'hide-ranking-number')]/p")
+  public WebElement firstMarketName;
+
+  @FindBy(
       xpath =
           "//table[contains(@class, 'cmc-table')]//div[contains(@class, 'hide-ranking-number')]/p")
   public List<WebElement> marketsName;

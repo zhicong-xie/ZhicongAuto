@@ -13,9 +13,10 @@ public class ChromeFlow extends BaseFlow {
   }
 
   public void openUrlOnGoogleChrome(String url) {
+    System.out.println("Maximize Chrome window ...");
+    maximizeWindow();
     System.out.println(String.format("Opening %s link on Google Chrome", url));
     webDriver.get(url);
-    maximizeWindow();
   }
 
   public String getBrowserOpenUrl() {

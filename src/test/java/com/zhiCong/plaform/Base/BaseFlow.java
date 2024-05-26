@@ -27,6 +27,7 @@ public class BaseFlow {
   private final int defaultNumOfSwipe = 3;
   private WebDriver webDriver;
   private final int defaultSwipePixel = 600;
+  private final int defaultNumOfMouseMovement = 3;
 
   public BaseFlow() {
     WebDriverConfig.getInstance();
@@ -111,10 +112,20 @@ public class BaseFlow {
     JavascriptExecutor js = (JavascriptExecutor) webDriver;
     Dimension windowSize = webDriver.manage().window().getSize();
     int height = windowSize.height * 3 / 2;
-    int pageHeight = ((Long) js.executeScript("return document.body.scrollHeight")).intValue();
+    int pageHeight;
+    try{
+      pageHeight  = ((Long) js.executeScript("return document.body.scrollHeight")).intValue();
+    }catch (ClassCastException e){
+      pageHeight = ((Double) js.executeScript("return document.body.scrollHeight")).intValue();
+    }
 
     while (true) {
-      int currentPosition = ((Long) js.executeScript("return window.pageYOffset")).intValue();
+      int currentPosition;
+      try{
+        currentPosition  = ((Long) js.executeScript("return window.pageYOffset")).intValue();
+      }catch (ClassCastException e){
+        currentPosition = ((Double) js.executeScript("return window.pageYOffset")).intValue();
+      }
       if (currentPosition >= pageHeight - height) {
         System.out.println("The page has slid to the bottom");
         break;
@@ -152,7 +163,7 @@ public class BaseFlow {
 
   protected void mouseMovementForCoordinate(WebElement webElement, Integer x, Integer y) {
     Actions actions = new Actions(webDriver);
-    for (int i = 0; i < defaultNumOfSwipe; i++) {
+    for (int i = 0; i < defaultNumOfMouseMovement; i++) {
       actions.moveToElement(webElement, x, y).pause(2000).build().perform();
       waitForSeconds(1);
     }
@@ -293,7 +304,7 @@ public class BaseFlow {
 
     // 获取元素的尺寸
     Dimension elementSize = webElement.getSize();
-    int width = (elementSize.getWidth()) * 3 / 5;
+    int width = (elementSize.getWidth()) / 2;
 
     for (int i = 0; i < number; i++) {
       Random random = new Random();

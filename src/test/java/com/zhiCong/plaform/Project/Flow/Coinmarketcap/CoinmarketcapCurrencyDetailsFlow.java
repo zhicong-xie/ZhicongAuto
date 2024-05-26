@@ -24,11 +24,11 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
   }
 
   public boolean isCurrencyDetailsScreenDisplayed() {
-    return checkForElement(coinmarketcapCurrencyDetailsPage.coinmarketcapCurrencyDetailsTitle);
+    return checkForElement(coinmarketcapCurrencyDetailsPage.coinmarketcapCurrencyDetailsTitle,120);
   }
 
   public String getLoomNetWorkCopy() {
-    return waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkAboutCopy)
+    return waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkAboutCopy,60)
         .getText()
         .replaceAll("\n", "")
         .trim();
@@ -46,19 +46,19 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
   public void clickChartButton() {
     waitForElement(coinmarketcapCurrencyDetailsPage.chartButton).click();
     // 等待页面刷新
-    waitForSeconds(3);
+    waitForSeconds(15);
   }
 
   public void clickMarketsButton() {
     waitForElement(coinmarketcapCurrencyDetailsPage.marketsButton).click();
     // 等待页面刷新
-    waitForSeconds(3);
+    waitForSeconds(15);
   }
 
   public void clickAboutButton() {
     waitForElement(coinmarketcapCurrencyDetailsPage.aboutButton).click();
     // 等待页面刷新
-    waitForSeconds(3);
+    waitForSeconds(15);
   }
 
   public void selectMetamaskIcon() {
@@ -66,9 +66,11 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
   }
 
   public void selectShowRows(String item) throws IllegalAccessException {
+    //等待表格数据刷新
+    waitForElement(coinmarketcapCurrencyDetailsPage.firstMarketName,120);
     // 滑动到rowsDropDown 并点击
     swipeDownToFindElement(coinmarketcapCurrencyDetailsPage.rowsDropDown);
-    coinmarketcapCurrencyDetailsPage.rowsDropDown.click();
+    waitForElementClickable(coinmarketcapCurrencyDetailsPage.rowsDropDown).click();
 
     // 选择row option
     switch (item) {
@@ -100,6 +102,9 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
         new BigDecimal(
             keepNumbersDecimalPoints(totalString.substring(totalString.indexOf("$") + 1)));
     System.out.println("Volume (24h) total value is " + totalVolume);
+
+    //等待表格数据刷新
+    waitForElement(coinmarketcapCurrencyDetailsPage.firstMarketName,120);
 
     // 获取整个表格的数据
     swipeDownToFindElement(coinmarketcapCurrencyDetailsPage.invalidSequence);
