@@ -177,10 +177,22 @@ public class LoomCoinmarketcapCurrencyDetailsFlow extends BaseFlow {
       mouseMovementForCoordinate(loomCoinmarketcapCurrencyDetailsPage.chartView, x, 0);
       waitForSeconds(3);
       HashMap<String, String> data = new HashMap<>();
-      String date = loomCoinmarketcapCurrencyDetailsPage.chartPartialModelDate.getText().trim();
-      String time = loomCoinmarketcapCurrencyDetailsPage.chartPartialModelTime.getText().trim();
-      String price = loomCoinmarketcapCurrencyDetailsPage.chartPartialModelPrice.getText().trim();
-      String vol = loomCoinmarketcapCurrencyDetailsPage.chartPartialModelVol.getText().trim();
+      String date =
+          waitForElement(loomCoinmarketcapCurrencyDetailsPage.chartPartialModelDate)
+              .getText()
+              .trim();
+      String time =
+          waitForElement(loomCoinmarketcapCurrencyDetailsPage.chartPartialModelTime)
+              .getText()
+              .trim();
+      String price =
+          waitForElement(loomCoinmarketcapCurrencyDetailsPage.chartPartialModelPrice)
+              .getText()
+              .trim();
+      String vol =
+          waitForElement(loomCoinmarketcapCurrencyDetailsPage.chartPartialModelVol)
+              .getText()
+              .trim();
       data.put(price, vol);
       actualData.put(date + " " + time, data);
     }

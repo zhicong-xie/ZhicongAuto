@@ -64,28 +64,39 @@ public class BaseFlow {
 
   protected WebElement waitForElement(WebElement webElement) {
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
-    return w.until(ExpectedConditions.visibilityOf(webElement));
+    try {
+      return w.until(ExpectedConditions.visibilityOf(webElement));
+    } catch (StaleElementReferenceException se) {
+      return w.until(ExpectedConditions.visibilityOf(webElement));
+    }
   }
 
   protected WebElement waitForElementClickable(WebElement webElement) {
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
     w.until(ExpectedConditions.elementToBeClickable(webElement));
-    return w.until(ExpectedConditions.visibilityOf(webElement));
+    try {
+      return w.until(ExpectedConditions.visibilityOf(webElement));
+    } catch (StaleElementReferenceException se) {
+      return w.until(ExpectedConditions.visibilityOf(webElement));
+    }
   }
 
   protected WebElement waitForElement(WebElement webElement, Integer timeInSeconds) {
     WebDriverWait w = new WebDriverWait(webDriver, timeInSeconds);
-    return w.until(ExpectedConditions.visibilityOf(webElement));
+    try {
+      return w.until(ExpectedConditions.visibilityOf(webElement));
+    } catch (StaleElementReferenceException se) {
+      return w.until(ExpectedConditions.visibilityOf(webElement));
+    }
   }
 
   protected WebElement waitForElements(List<WebElement> webElements) {
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
-    return w.until(ExpectedConditions.visibilityOf(webElements.get(0)));
-  }
-
-  protected WebElement waitForElements(List<WebElement> webElements, Integer timeInSeconds) {
-    WebDriverWait w = new WebDriverWait(webDriver, timeInSeconds);
-    return w.until(ExpectedConditions.visibilityOf(webElements.get(0)));
+    try {
+      return w.until(ExpectedConditions.visibilityOf(webElements.get(0)));
+    } catch (StaleElementReferenceException se) {
+      return w.until(ExpectedConditions.visibilityOf(webElements.get(0)));
+    }
   }
 
   protected void waitForSeconds(int waitingSeconds) {
