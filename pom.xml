@@ -52,13 +52,6 @@
             <artifactId>cucumber-reporting</artifactId>
             <version>4.6.0</version>
         </dependency>
-        <!--selenium jar-->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.14.0</version>
-        </dependency>
-        <!--appium jar-->
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>

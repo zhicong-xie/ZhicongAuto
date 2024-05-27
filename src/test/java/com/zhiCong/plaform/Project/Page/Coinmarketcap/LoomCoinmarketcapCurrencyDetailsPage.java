@@ -7,18 +7,18 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
-public class CoinmarketcapCurrencyDetailsPage {
+public class LoomCoinmarketcapCurrencyDetailsPage {
 
   private WebDriver webDriver;
 
-  public CoinmarketcapCurrencyDetailsPage() {
+  public LoomCoinmarketcapCurrencyDetailsPage() {
     WebDriverConfig.getInstance();
     webDriver = WebDriverConfig.getDriver();
     PageFactory.initElements(webDriver, this);
   }
 
-  @FindBy(id = "section-coin-overview")
-  public WebElement coinmarketcapCurrencyDetailsTitle;
+  @FindBy(xpath = "//div[contains(@class, 'coin-stats-header')]")
+  public WebElement loomCoinmarketcapCurrencyDetailsTitle;
 
   @FindBy(xpath = "(//div[@class = 'readmoreDesc'])[1]")
   public WebElement loomNetWorkAboutCopy;
@@ -62,8 +62,8 @@ public class CoinmarketcapCurrencyDetailsPage {
   public WebElement totalVolume;
 
   @FindBy(
-          xpath =
-                  "//table[contains(@class, 'cmc-table')]//div[contains(@class, 'hide-ranking-number')]/p")
+      xpath =
+          "//table[contains(@class, 'cmc-table')]//div[contains(@class, 'hide-ranking-number')]/p")
   public WebElement firstMarketName;
 
   @FindBy(

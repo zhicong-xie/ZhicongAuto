@@ -38,8 +38,12 @@ public class BaseFlow {
     WebDriverWait w = new WebDriverWait(webDriver, defaultWaitingTime);
     try {
       w.until(ExpectedConditions.visibilityOf(webElement));
-      return webElement.isDisplayed();
+      return true;
+    } catch (StaleElementReferenceException se) {
+      w.until(ExpectedConditions.visibilityOf(webElement));
+      return true;
     } catch (Exception e) {
+      System.out.println(e);
       return false;
     }
   }
@@ -48,8 +52,12 @@ public class BaseFlow {
     WebDriverWait w = new WebDriverWait(webDriver, timeInSeconds);
     try {
       w.until(ExpectedConditions.visibilityOf(webElement));
-      return webElement.isDisplayed();
+      return true;
+    } catch (StaleElementReferenceException se) {
+      w.until(ExpectedConditions.visibilityOf(webElement));
+      return true;
     } catch (Exception e) {
+      System.out.println(e);
       return false;
     }
   }
@@ -113,17 +121,17 @@ public class BaseFlow {
     Dimension windowSize = webDriver.manage().window().getSize();
     int height = windowSize.height * 3 / 2;
     int pageHeight;
-    try{
-      pageHeight  = ((Long) js.executeScript("return document.body.scrollHeight")).intValue();
-    }catch (ClassCastException e){
+    try {
+      pageHeight = ((Long) js.executeScript("return document.body.scrollHeight")).intValue();
+    } catch (ClassCastException e) {
       pageHeight = ((Double) js.executeScript("return document.body.scrollHeight")).intValue();
     }
 
     while (true) {
       int currentPosition;
-      try{
-        currentPosition  = ((Long) js.executeScript("return window.pageYOffset")).intValue();
-      }catch (ClassCastException e){
+      try {
+        currentPosition = ((Long) js.executeScript("return window.pageYOffset")).intValue();
+      } catch (ClassCastException e) {
         currentPosition = ((Double) js.executeScript("return window.pageYOffset")).intValue();
       }
       if (currentPosition >= pageHeight - height) {

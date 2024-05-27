@@ -17,7 +17,7 @@ public class CryptocurrenciesPage {
     PageFactory.initElements(webDriver, this);
   }
 
-  @FindBy(xpath = "//*[contains(@class, 'cmc-logo tooltip')]")
+  @FindBy(xpath = "//*[contains(text(), \"Today's Cryptocurrency Prices by Market Cap\")]")
   public WebElement coinmarketcapTitle;
 
   @FindBy(

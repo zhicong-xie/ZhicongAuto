@@ -18,7 +18,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
   }
 
   public boolean isCoinmarketcapScreenDisplayed() {
-    return checkForElement(cryptocurrenciesPage.coinmarketcapTitle,120);
+    return checkForElement(cryptocurrenciesPage.coinmarketcapTitle, 120);
   }
 
   public int swipeDownGetAllCurrencyListSize() {
@@ -47,8 +47,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
 
   public void selectFirstSearchResult() {
     // 等待search result刷新并选择第一个
-    //高峰时期请延长等待时间
-    waitForElement(cryptocurrenciesPage.searchResultList,360).click();
+    waitForElement(cryptocurrenciesPage.searchResultList, 120).click();
   }
 
   public void inputSearchInputBar(String data) {
@@ -59,6 +58,7 @@ public class CryptocurrenciesFlow extends BaseFlow {
     // 如果Accept Cookie Button存在则点击
     if (checkForElement(cryptocurrenciesPage.acceptCookieButton, 30)) {
       swipeToDown(100);
+      waitForSeconds(1);
       cryptocurrenciesPage.acceptCookieButton.click();
     }
   }

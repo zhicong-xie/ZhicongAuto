@@ -2,7 +2,7 @@ package com.zhiCong.Plaform.Project.Flow.Coinmarketcap;
 
 import com.zhiCong.Plaform.Base.BaseFlow;
 import com.zhiCong.Plaform.Base.Config.WebDriverConfig;
-import com.zhiCong.Plaform.Project.Page.Coinmarketcap.CoinmarketcapCurrencyDetailsPage;
+import com.zhiCong.Plaform.Project.Page.Coinmarketcap.LoomCoinmarketcapCurrencyDetailsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import java.io.IOException;
@@ -13,106 +13,100 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
+public class LoomCoinmarketcapCurrencyDetailsFlow extends BaseFlow {
 
-  private CoinmarketcapCurrencyDetailsPage coinmarketcapCurrencyDetailsPage;
+  private LoomCoinmarketcapCurrencyDetailsPage loomCoinmarketcapCurrencyDetailsPage;
   private WebDriver webDriver;
 
-  public CoinmarketcapCurrencyDetailsFlow() {
-    coinmarketcapCurrencyDetailsPage = new CoinmarketcapCurrencyDetailsPage();
+  public LoomCoinmarketcapCurrencyDetailsFlow() {
+    loomCoinmarketcapCurrencyDetailsPage = new LoomCoinmarketcapCurrencyDetailsPage();
     webDriver = WebDriverConfig.getDriver();
   }
 
   public boolean isCurrencyDetailsScreenDisplayed() {
-    return checkForElement(coinmarketcapCurrencyDetailsPage.coinmarketcapCurrencyDetailsTitle,120);
+    return checkForElement(
+        loomCoinmarketcapCurrencyDetailsPage.loomCoinmarketcapCurrencyDetailsTitle, 120);
   }
 
   public String getLoomNetWorkCopy() {
-    return waitForElement(coinmarketcapCurrencyDetailsPage.loomNetWorkAboutCopy,60)
+    return waitForElement(loomCoinmarketcapCurrencyDetailsPage.loomNetWorkAboutCopy, 60)
         .getText()
         .replaceAll("\n", "")
         .trim();
   }
 
   public void clickFollowButton() {
-    waitForElement(coinmarketcapCurrencyDetailsPage.followButton).click();
-    waitForSeconds(8);
+    waitForElement(loomCoinmarketcapCurrencyDetailsPage.followButton).click();
   }
 
   public void clickWatchlistButton() {
-    waitForElement(coinmarketcapCurrencyDetailsPage.watchlistButton).click();
+    waitForElement(loomCoinmarketcapCurrencyDetailsPage.watchlistButton).click();
   }
 
   public void clickChartButton() {
-    waitForElement(coinmarketcapCurrencyDetailsPage.chartButton).click();
-    // 等待页面刷新
-    waitForSeconds(15);
+    waitForElement(loomCoinmarketcapCurrencyDetailsPage.chartButton).click();
   }
 
   public void clickMarketsButton() {
-    waitForElement(coinmarketcapCurrencyDetailsPage.marketsButton).click();
-    // 等待页面刷新
-    waitForSeconds(15);
+    waitForElement(loomCoinmarketcapCurrencyDetailsPage.marketsButton).click();
   }
 
   public void clickAboutButton() {
-    waitForElement(coinmarketcapCurrencyDetailsPage.aboutButton).click();
-    // 等待页面刷新
-    waitForSeconds(15);
+    waitForElement(loomCoinmarketcapCurrencyDetailsPage.aboutButton).click();
   }
 
   public void selectMetamaskIcon() {
-    waitForElement(coinmarketcapCurrencyDetailsPage.metamaskIcon).click();
+    waitForElement(loomCoinmarketcapCurrencyDetailsPage.metamaskIcon).click();
   }
 
   public void selectShowRows(String item) throws IllegalAccessException {
-    //等待表格数据刷新
-    waitForElement(coinmarketcapCurrencyDetailsPage.firstMarketName,120);
+    // 等待表格数据刷新
+    waitForElement(loomCoinmarketcapCurrencyDetailsPage.firstMarketName, 120);
     // 滑动到rowsDropDown 并点击
-    swipeDownToFindElement(coinmarketcapCurrencyDetailsPage.rowsDropDown);
-    waitForElementClickable(coinmarketcapCurrencyDetailsPage.rowsDropDown).click();
+    swipeDownToFindElement(loomCoinmarketcapCurrencyDetailsPage.rowsDropDown);
+    waitForElementClickable(loomCoinmarketcapCurrencyDetailsPage.rowsDropDown).click();
 
     // 选择row option
     switch (item) {
       case "10":
-        waitForElement(coinmarketcapCurrencyDetailsPage.tenRows).click();
+        waitForElement(loomCoinmarketcapCurrencyDetailsPage.tenRows).click();
         break;
       case "20":
-        waitForElement(coinmarketcapCurrencyDetailsPage.twentyRows).click();
+        waitForElement(loomCoinmarketcapCurrencyDetailsPage.twentyRows).click();
         break;
       case "50":
-        waitForElement(coinmarketcapCurrencyDetailsPage.fiftyRows).click();
+        waitForElement(loomCoinmarketcapCurrencyDetailsPage.fiftyRows).click();
         break;
       case "100":
-        waitForElement(coinmarketcapCurrencyDetailsPage.oneHundredRows).click();
+        waitForElement(loomCoinmarketcapCurrencyDetailsPage.oneHundredRows).click();
         break;
       default:
         throw new IllegalAccessException(String.format("unexpected value for %s", item));
     }
 
     // 再次等待表格刷新
-    waitForSeconds(3);
+    waitForSeconds(5);
   }
 
   public boolean isVolumePercentageCorrect(String item) {
 
     // 获取 LOOM Volume value
-    String totalString = waitForElement(coinmarketcapCurrencyDetailsPage.totalVolume).getText();
+    String totalString = waitForElement(loomCoinmarketcapCurrencyDetailsPage.totalVolume).getText();
     BigDecimal totalVolume =
         new BigDecimal(
             keepNumbersDecimalPoints(totalString.substring(totalString.indexOf("$") + 1)));
     System.out.println("Volume (24h) total value is " + totalVolume);
 
-    //等待表格数据刷新
-    waitForElement(coinmarketcapCurrencyDetailsPage.firstMarketName,120);
+    // 等待表格数据刷新
+    waitForElement(loomCoinmarketcapCurrencyDetailsPage.firstMarketName, 120);
 
     // 获取整个表格的数据
-    swipeDownToFindElement(coinmarketcapCurrencyDetailsPage.invalidSequence);
+    swipeDownToFindElement(loomCoinmarketcapCurrencyDetailsPage.invalidSequence);
 
-    List<WebElement> marketsName = coinmarketcapCurrencyDetailsPage.marketsName;
-    List<WebElement> marketsVolume = coinmarketcapCurrencyDetailsPage.marketsVolume;
+    List<WebElement> marketsName = loomCoinmarketcapCurrencyDetailsPage.marketsName;
+    List<WebElement> marketsVolume = loomCoinmarketcapCurrencyDetailsPage.marketsVolume;
     List<WebElement> marketsVolumePercentage =
-        coinmarketcapCurrencyDetailsPage.marketsVolumePercentage;
+        loomCoinmarketcapCurrencyDetailsPage.marketsVolumePercentage;
     HashMap<BigDecimal, BigDecimal> marketsData = new HashMap<>();
 
     for (int i = 0; i < marketsName.size(); i++) {
@@ -173,20 +167,20 @@ public class CoinmarketcapCurrencyDetailsFlow extends BaseFlow {
     // 获取3次随机元素坐标
     List<Integer> randomCoordinates =
         getRandomCoordinatesForElement(
-            3, waitForElement(coinmarketcapCurrencyDetailsPage.chartView, 120));
+            3, waitForElement(loomCoinmarketcapCurrencyDetailsPage.chartView, 120));
 
     HashMap<String, HashMap<String, String>> actualData = new LinkedHashMap<>();
 
     // 获取随机三点的实际弹窗数据
     for (Integer x : randomCoordinates) {
 
-      mouseMovementForCoordinate(coinmarketcapCurrencyDetailsPage.chartView, x, 0);
+      mouseMovementForCoordinate(loomCoinmarketcapCurrencyDetailsPage.chartView, x, 0);
       waitForSeconds(3);
       HashMap<String, String> data = new HashMap<>();
-      String date = coinmarketcapCurrencyDetailsPage.chartPartialModelDate.getText().trim();
-      String time = coinmarketcapCurrencyDetailsPage.chartPartialModelTime.getText().trim();
-      String price = coinmarketcapCurrencyDetailsPage.chartPartialModelPrice.getText().trim();
-      String vol = coinmarketcapCurrencyDetailsPage.chartPartialModelVol.getText().trim();
+      String date = loomCoinmarketcapCurrencyDetailsPage.chartPartialModelDate.getText().trim();
+      String time = loomCoinmarketcapCurrencyDetailsPage.chartPartialModelTime.getText().trim();
+      String price = loomCoinmarketcapCurrencyDetailsPage.chartPartialModelPrice.getText().trim();
+      String vol = loomCoinmarketcapCurrencyDetailsPage.chartPartialModelVol.getText().trim();
       data.put(price, vol);
       actualData.put(date + " " + time, data);
     }

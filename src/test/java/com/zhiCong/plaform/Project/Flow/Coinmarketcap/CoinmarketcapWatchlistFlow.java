@@ -25,7 +25,7 @@ public class CoinmarketcapWatchlistFlow extends BaseFlow {
   public HashMap<String, String> getWatchlistList() {
     HashMap<String, String> watchlist = new HashMap<>();
 
-    //获取watchlist 列表
+    // 获取watchlist 列表
     List<WebElement> watchListName = coinmarketcapWatchlistPage.watchlistListName;
     int index = 0;
 
@@ -34,12 +34,12 @@ public class CoinmarketcapWatchlistFlow extends BaseFlow {
       String fullName = "";
       String abbreviation = "";
 
-      //存储currency 全称
+      // 存储currency 全称
       if ((index + 1) % 2 != 0) {
         fullName = watchListName.get(index).getText().trim();
         index++;
       }
-      //存储currency 缩写
+      // 存储currency 缩写
       if ((index + 1) % 2 == 0) {
         abbreviation = watchListName.get(index).getText().trim();
         index++;
